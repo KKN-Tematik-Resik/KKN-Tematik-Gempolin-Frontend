@@ -1,0 +1,880 @@
+{
+  "common": {
+    "home": "Beranda",
+    "edit": "Ubah",
+    "close": "Tutup",
+    "saveChanges": "Simpan Perubahan",
+    "viewMore": "Lihat Selengkapnya",
+    "delete": "Hapus",
+    "filter": "Saring",
+    "seeAll": "Lihat Semua",
+    "confirm": "Konfirmasi",
+    "cancel": "Batal"
+  },
+  "sidebar": {
+    "groups": {
+      "mainMenu": "Menu Utama",
+      "publicPortal": "Portal Publik",
+      "menu": "Menu",
+      "support": "Dukungan",
+      "others": "Lainnya"
+    },
+    "badges": {
+      "new": "baru",
+      "pro": "pro"
+    },
+    "items": {
+      "adminDashboard": "Dashboard Admin",
+      "gempolin": "Rekap Gempolin",
+      "demografi": "Demografi & Partisipasi",
+      "bankSampah": "Bank Sampah",
+      "pembaruanData": "Pembaruan Data",
+      "sinkronisasi": "Status Sinkronisasi",
+      "profilAdmin": "Profil & Keamanan Admin",
+      "publicDashboard": "Dashboard Publik",
+      "petaPartisipasi": "Peta Partisipasi",
+      "dashboard": "Dashboard",
+      "ecommerceHome": "Ecommerce",
+      "analytics": "Analitik",
+      "marketing": "Pemasaran",
+      "crm": "CRM",
+      "stocks": "Saham",
+      "saas": "SaaS",
+      "logistics": "Logistik",
+      "ai": "AI",
+      "sales": "Penjualan",
+      "finance": "Keuangan",
+      "aiAssistant": "Asisten AI",
+      "textGenerator": "Pembuat Teks",
+      "imageGenerator": "Pembuat Gambar",
+      "codeGenerator": "Pembuat Kode",
+      "videoGenerator": "Pembuat Video",
+      "aiSettings": "Pengaturan AI",
+      "ecommerce": "E-commerce",
+      "products": "Produk",
+      "addProduct": "Tambah Produk",
+      "billing": "Penagihan",
+      "invoices": "Faktur",
+      "singleInvoice": "Faktur Tunggal",
+      "createInvoice": "Buat Faktur",
+      "transactions": "Transaksi",
+      "singleTransaction": "Transaksi Tunggal",
+      "calendar": "Kalender",
+      "userProfile": "Profil Pengguna",
+      "task": "Tugas",
+      "taskList": "Daftar Tugas",
+      "kanban": "Kanban",
+      "forms": "Formulir",
+      "formElements": "Elemen Formulir",
+      "formLayout": "Tata Letak Formulir",
+      "tables": "Tabel",
+      "basicTables": "Tabel Dasar",
+      "dataTables": "Tabel Data",
+      "pages": "Halaman",
+      "fileManager": "Manajer Berkas",
+      "pricingTables": "Tabel Harga",
+      "faq": "FAQ",
+      "apiKeys": "Kunci API",
+      "integrations": "Integrasi",
+      "blankPage": "Halaman Kosong",
+      "error404": "Galat 404",
+      "error500": "Galat 500",
+      "error503": "Galat 503",
+      "comingSoon": "Segera Hadir",
+      "maintenance": "Pemeliharaan",
+      "successPage": "Berhasil",
+      "layouts": "Tata Letak",
+      "layoutOne": "Tata Letak 1",
+      "layoutTwo": "Tata Letak 2",
+      "layoutThree": "Tata Letak 3",
+      "layoutFour": "Tata Letak 4",
+      "layoutFive": "Tata Letak 5",
+      "layoutSix": "Tata Letak 6",
+      "charts": "Grafik",
+      "lineChart": "Grafik Garis",
+      "barChart": "Grafik Batang",
+      "pieChart": "Grafik Lingkaran",
+      "radarChart": "Grafik Radar",
+      "radialChart": "Grafik Radial",
+      "maps": "Peta",
+      "mapsGoogle": "Peta Google",
+      "vectorMap": "Peta Vektor",
+      "uiElements": "Elemen UI",
+      "alerts": "Pemberitahuan",
+      "avatar": "Avatar",
+      "badge": "Lencana",
+      "breadcrumb": "Breadcrumb",
+      "buttons": "Tombol",
+      "buttonsGroup": "Grup Tombol",
+      "cards": "Kartu",
+      "carousel": "Carousel",
+      "dropdowns": "Dropdown",
+      "images": "Gambar",
+      "links": "Tautan",
+      "listView": "Daftar",
+      "modals": "Modal",
+      "notificationUi": "Notifikasi",
+      "pagination": "Paginasi",
+      "popovers": "Popover",
+      "progressbar": "Bilah Progres",
+      "ribbons": "Pita",
+      "spinners": "Pemutar",
+      "tabs": "Tab",
+      "tooltips": "Tooltip",
+      "videos": "Video",
+      "authentication": "Autentikasi",
+      "signIn": "Masuk",
+      "signUp": "Daftar",
+      "resetPassword": "Atur Ulang Sandi",
+      "twoStepVerification": "Verifikasi 2 Langkah",
+      "chat": "Obrolan",
+      "supportMenu": "Dukungan",
+      "supportList": "Daftar Dukungan",
+      "supportReply": "Balas Dukungan",
+      "email": "Surel",
+      "inbox": "Kotak Masuk",
+      "inboxDetails": "Detail"
+    },
+    "widget": {
+      "title": "Kelurahan Gempolsari",
+      "description": "Sistem Informasi Pengelolaan Sampah v1.0",
+      "purchasePlan": "Tentang Sistem"
+    }
+  },
+  "header": {
+    "searchPlaceholder": "Cari atau ketik perintah...",
+    "toggleSidebar": "Buka/Tutup Sidebar",
+    "notifications": {
+      "title": "Notifikasi",
+      "requestsPermission": "meminta izin untuk mengubah",
+      "project": "Proyek",
+      "minAgo": "{count} mnt lalu",
+      "hrAgo": "{count} jam lalu",
+      "viewAll": "Lihat Semua Notifikasi"
+    }
+  },
+  "userDropdown": {
+    "editProfile": "Ubah profil",
+    "accountSettings": "Pengaturan akun",
+    "support": "Dukungan",
+    "language": "Bahasa",
+    "signOut": "Keluar"
+  },
+  "ecommerce": {
+    "title": "Dashboard E-commerce",
+    "metrics": {
+      "customers": "Pelanggan",
+      "orders": "Pesanan"
+    },
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "Mei",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Agt",
+      "sep": "Sep",
+      "oct": "Okt",
+      "nov": "Nov",
+      "dec": "Des"
+    },
+    "monthlySales": {
+      "title": "Penjualan Bulanan",
+      "series": "Penjualan"
+    },
+    "monthlyTarget": {
+      "title": "Target Bulanan",
+      "subtitle": "Target yang Anda tentukan setiap bulan",
+      "earned": "Pendapatan Anda {amount} hari ini, lebih tinggi dari bulan lalu. Pertahankan kinerja yang baik!",
+      "target": "Target",
+      "revenue": "Pendapatan",
+      "today": "Hari Ini"
+    },
+    "statistics": {
+      "title": "Statistik",
+      "subtitle": "Target yang Anda tentukan setiap bulan",
+      "overview": "Ringkasan",
+      "sales": "Penjualan",
+      "revenue": "Pendapatan",
+      "monthly": "Bulanan",
+      "quarterly": "Kuartalan",
+      "annually": "Tahunan",
+      "selectDateRange": "Pilih rentang tanggal"
+    },
+    "recentOrders": {
+      "title": "Pesanan Terbaru",
+      "products": "Produk",
+      "category": "Kategori",
+      "price": "Harga",
+      "status": "Status",
+      "variants": "{count, plural, one {# Varian} other {# Varian}}",
+      "categories": {
+        "laptop": "Laptop",
+        "watch": "Jam Tangan",
+        "smartphone": "Ponsel Pintar",
+        "electronics": "Elektronik",
+        "accessories": "Aksesoris"
+      },
+      "statuses": {
+        "delivered": "Terkirim",
+        "pending": "Tertunda",
+        "canceled": "Dibatalkan"
+      }
+    },
+    "demographic": {
+      "title": "Demografi Pelanggan",
+      "subtitle": "Jumlah pelanggan berdasarkan negara",
+      "customers": "{count} Pelanggan",
+      "usa": "AS",
+      "france": "Prancis",
+      "yemen": "Yaman",
+      "uk": "Inggris Raya"
+    }
+  },
+  "analytics": {
+    "metrics": {
+      "uniqueVisitors": "Pengunjung Unik",
+      "totalPageviews": "Total Tayangan",
+      "bounceRate": "Rasio Pentalan",
+      "visitDuration": "Durasi Kunjungan",
+      "vsLastMonth": "Vs bulan lalu"
+    },
+    "barChart": {
+      "title": "Analitik",
+      "subtitle": "Analitik pengunjung 30 hari terakhir"
+    },
+    "topChannels": {
+      "title": "Kanal Teratas",
+      "source": "Sumber",
+      "visitors": "Pengunjung",
+      "channelsReport": "Laporan Kanal"
+    },
+    "topPages": {
+      "title": "Halaman Teratas",
+      "source": "Sumber",
+      "pageview": "Tayangan",
+      "channelsReport": "Laporan Kanal"
+    },
+    "activeUsers": {
+      "title": "Pengguna Aktif",
+      "liveVisitors": "Pengunjung Langsung",
+      "avgDaily": "Rata-rata Harian",
+      "avgWeekly": "Rata-rata Mingguan",
+      "avgMonthly": "Rata-rata Bulanan"
+    },
+    "acquisitionChannels": {
+      "title": "Kanal Akuisisi"
+    },
+    "session": {
+      "title": "Sesi Berdasarkan Perangkat"
+    },
+    "recentOrders": {
+      "title": "Pesanan Terbaru",
+      "products": "Produk",
+      "category": "Kategori",
+      "country": "Negara",
+      "cr": "CR",
+      "value": "Nilai",
+      "categories": {
+        "uiKits": "UI Kits",
+        "templates": "Templat",
+        "saas": "SaaS"
+      },
+      "crDashboard": "Dashboard"
+    }
+  },
+  "notFound": {
+    "error": "GALAT",
+    "message": "Kami tidak dapat menemukan halaman yang Anda cari!",
+    "backHome": "Kembali ke Beranda"
+  },
+  "marketing": {
+    "metrics": {
+      "avgClientRating": "Rata-rata Penilaian",
+      "instagramFollowers": "Pengikut Instagram",
+      "totalRevenue": "Total Pendapatan",
+      "vsLastMonth": "Vs bulan lalu"
+    },
+    "impressionChart": {
+      "title": "Impresi & Lalu Lintas Data",
+      "totalRevenue": "Total Pendapatan",
+      "sales": "Penjualan",
+      "revenue": "Pendapatan"
+    },
+    "featuredCampaign": {
+      "title": "Kampanye Unggulan",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus",
+      "products": "Produk",
+      "campaign": "Kampanye",
+      "status": "Status",
+      "adsCampaign": "Kampanye Iklan",
+      "campaigns": {
+        "growBrand": "Kembangkan merek Anda...",
+        "betterIdeas": "Ciptakan Ide Lebih Baik...",
+        "increaseTraffic": "Tingkatkan lalu lintas web..."
+      },
+      "statuses": {
+        "success": "Berhasil",
+        "pending": "Tertunda",
+        "failed": "Gagal"
+      }
+    },
+    "trafficStats": {
+      "title": "Statistik Lalu Lintas",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus",
+      "newSubscribers": "Pelanggan Baru",
+      "conversionRate": "Tingkat Konversi",
+      "pageBounceRate": "Rasio Pentalan",
+      "thenLastWeek": "dari minggu lalu",
+      "newSales": "Penjualan Baru"
+    },
+    "trafficSource": {
+      "title": "Sumber Lalu Lintas Teratas",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus",
+      "viewAll": "Lihat Semua"
+    }
+  },
+  "crm": {
+    "metrics": {
+      "activeDeal": "Kesepakatan Aktif",
+      "revenueTotal": "Total Pendapatan",
+      "closedDeals": "Kesepakatan Ditutup",
+      "lastMonth": "bulan lalu"
+    },
+    "statistics": {
+      "title": "Statistik",
+      "subtitle": "Target yang Anda tentukan setiap bulan",
+      "avgYearlyProfit": "Rata-rata Laba Tahunan",
+      "sales": "Penjualan",
+      "revenue": "Pendapatan"
+    },
+    "estimatedRevenue": {
+      "title": "Estimasi Pendapatan",
+      "subtitle": "Target yang Anda tentukan setiap bulan",
+      "goals": "Target Juni",
+      "marketing": "Pemasaran",
+      "sales": "Penjualan"
+    },
+    "salesCategory": {
+      "title": "Kategori Penjualan",
+      "affiliate": "Afiliasi",
+      "direct": "Langsung",
+      "adsense": "AdSense",
+      "affiliateProgram": "Program Afiliasi",
+      "directBuy": "Beli Langsung",
+      "products": "Produk",
+      "total": "Total",
+      "usedOf": "Digunakan dari"
+    },
+    "upcomingSchedule": {
+      "title": "Jadwal Mendatang",
+      "schedules": {
+        "item1": {
+          "title": "Siaran Pers Analitik Bisnis",
+          "description": "Menjelajahi Masa Depan Berbasis Data +6 lainnya"
+        },
+        "item2": {
+          "title": "Business Sprint",
+          "description": "Teknik dari Business Sprint +2 lainnya"
+        },
+        "item3": {
+          "title": "Pertemuan Ulasan Pelanggan",
+          "description": "Wawasan dari Pertemuan Ulasan Pelanggan +8 lainnya"
+        }
+      }
+    },
+    "recentOrders": {
+      "title": "Pesanan Terbaru",
+      "dealId": "ID Kesepakatan",
+      "customer": "Pelanggan",
+      "productService": "Produk/Layanan",
+      "dealValue": "Nilai Kesepakatan",
+      "closeDate": "Tanggal Penutupan",
+      "status": "Status",
+      "action": "Aksi",
+      "products": {
+        "softwareLicense": "Lisensi Perangkat Lunak",
+        "cloudHosting": "Hosting Cloud",
+        "webDomain": "Domain Web",
+        "sslCertificate": "Sertifikat SSL",
+        "premiumSupport": "Dukungan Premium"
+      },
+      "statuses": {
+        "complete": "Selesai",
+        "pending": "Tertunda",
+        "cancel": "Batal"
+      }
+    }
+  },
+  "stocks": {
+    "title": "Saham",
+    "dividend": {
+      "title": "Dividen",
+      "series": "Dividen",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus"
+    },
+    "portfolioPerformance": {
+      "title": "Kinerja Portofolio",
+      "subtitle": "Berikut statistik kinerja setiap bulan",
+      "series": "Kinerja Portofolio"
+    },
+    "trendingStocks": {
+      "title": "Saham Tren",
+      "shortStock": "Short Stock",
+      "buyStock": "Beli Saham"
+    },
+    "watchlist": {
+      "title": "Daftar Pantau Saya",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus"
+    },
+    "latestTransactions": {
+      "title": "Transaksi Terbaru",
+      "searchPlaceholder": "Cari...",
+      "table": {
+        "name": "Nama",
+        "date": "Tanggal",
+        "price": "Harga",
+        "category": "Kategori",
+        "status": "Status"
+      },
+      "actions": {
+        "bought": "Beli {symbol}",
+        "sell": "Jual {symbol}"
+      },
+      "categories": {
+        "finance": "Keuangan"
+      },
+      "statuses": {
+        "success": "Berhasil",
+        "pending": "Tertunda",
+        "failed": "Gagal"
+      }
+    }
+  },
+  "saas": {
+    "title": "SaaS",
+    "metrics": {
+      "overview": "Ringkasan",
+      "totalRevenue": "Total Pendapatan",
+      "activeUsers": "Pengguna Aktif",
+      "clv": "Nilai Seumur Hidup Pelanggan",
+      "cac": "Biaya Akuisisi Pelanggan"
+    },
+    "churnRate": {
+      "title": "Tingkat Churn",
+      "subtitle": "Turun ke paket Gratis",
+      "thanLastWeek": "dari minggu lalu",
+      "series": "Tingkat Churn",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus"
+    },
+    "userGrowth": {
+      "title": "Pertumbuhan Pengguna",
+      "subtitle": "Pendaftaran baru situs web + seluler",
+      "thanLastWeek": "dari minggu lalu",
+      "series": "Pendapatan",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus"
+    },
+    "conversionFunnel": {
+      "title": "Corong Konversi",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus",
+      "series": {
+        "adImpressions": "Impresi Iklan",
+        "websiteSession": "Sesi Situs Web",
+        "appDownload": "Unduhan Aplikasi",
+        "newUsers": "Pengguna Baru"
+      }
+    },
+    "recentInvoices": {
+      "title": "Faktur Terbaru",
+      "table": {
+        "serialNo": "No Seri:",
+        "closeDate": "Tanggal Penutupan",
+        "user": "Pengguna",
+        "amount": "Jumlah",
+        "status": "Status"
+      },
+      "statuses": {
+        "complete": "Selesai",
+        "pending": "Tertunda",
+        "cancelled": "Dibatalkan"
+      }
+    },
+    "productPerformance": {
+      "title": "Kinerja Produk",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus",
+      "tabs": {
+        "dailySales": "Penjualan Harian",
+        "onlineSales": "Penjualan Daring",
+        "newUsers": "Pengguna Baru"
+      },
+      "digitalProduct": "Produk Digital",
+      "physicalProduct": "Produk Fisik",
+      "avgDailySales": "Rata-rata Penjualan Harian",
+      "totalOnlineSales": "Total Penjualan Daring",
+      "addedLastMonth": "Ditambahkan bulan lalu",
+      "totalNewUsers": "Total Pengguna Baru",
+      "series": {
+        "sales": "Penjualan",
+        "revenue": "Pendapatan"
+      }
+    },
+    "activities": {
+      "title": "Aktivitas",
+      "viewMore": "Lihat Selengkapnya",
+      "delete": "Hapus",
+      "newInvoice": "Faktur baru",
+      "createdInvoice": "membuat faktur"
+    }
+  },
+  "logistics": {
+    "title": "Logistik",
+    "metrics": {
+      "totalOrders": "Total Pesanan",
+      "ordersInTransit": "Pesanan Dalam Pengiriman"
+    },
+    "deliveryStatistics": {
+      "title": "Statistik Pengiriman",
+      "subtitle": "Total pengiriman 70,5 rb",
+      "monthly": "Bulanan",
+      "yearly": "Tahunan",
+      "shipment": "Pengiriman",
+      "delivery": "Penerimaan"
+    },
+    "revenueEarned": {
+      "totalRevenue": "Total pendapatan diperoleh",
+      "shippedQuantities": "Jumlah dikirim",
+      "newSales": "Penjualan Baru"
+    },
+    "deliveryVehicle": {
+      "title": "Kendaraan Pengiriman",
+      "subtitle": "Kendaraan yang beroperasi di jalan",
+      "thanLastWeek": "dari minggu lalu",
+      "onRoute": "Dalam perjalanan"
+    },
+    "trackingDelivery": {
+      "title": "Pelacakan Pengiriman",
+      "subtitle": "Riwayat pengiriman yang baru dilihat"
+    },
+    "trackingProgress": {
+      "trackingId": "ID Pelacakan",
+      "inTransit": "Dalam Perjalanan",
+      "pickedUp": "Diambil",
+      "delivered": "Terkirim"
+    },
+    "deliveryMan": {
+      "courier": "Kurir"
+    },
+    "deliveriesActivity": {
+      "title": "Aktivitas Pengiriman",
+      "subtitle": "Lacak aktivitas pengiriman terbaru Anda",
+      "tabs": {
+        "all": "Semua",
+        "delivered": "Terkirim",
+        "inTransit": "Dalam Perjalanan",
+        "pending": "Tertunda",
+        "processing": "Diproses"
+      },
+      "filter": {
+        "button": "Saring",
+        "category": "Kategori",
+        "searchCategory": "Cari kategori...",
+        "company": "Perusahaan",
+        "searchCompany": "Cari perusahaan...",
+        "apply": "Terapkan"
+      },
+      "table": {
+        "orderId": "ID Pesanan",
+        "category": "Kategori",
+        "company": "Perusahaan",
+        "arrivalTime": "Waktu Kedatangan",
+        "route": "Rute",
+        "price": "Harga",
+        "status": "Status"
+      },
+      "categories": {
+        "furniture": "Mebel",
+        "clothing": "Pakaian",
+        "books": "Buku",
+        "automotive": "Otomotif",
+        "electronics": "Elektronik",
+        "health": "Kesehatan",
+        "toys": "Mainan",
+        "kitchen": "Dapur",
+        "beauty": "Kecantikan",
+        "sports": "Olahraga"
+      },
+      "statuses": {
+        "delivered": "Terkirim",
+        "inTransit": "Dalam Perjalanan",
+        "canceled": "Dibatalkan"
+      },
+      "pagination": {
+        "showing": "Menampilkan",
+        "to": "hingga",
+        "of": "dari",
+        "page": "Halaman"
+      }
+    }
+  },
+  "aiDashboard": {
+    "stats": {
+      "users": "Pengguna",
+      "projects": "Proyek",
+      "revenue": "Pendapatan",
+      "paidUsers": "Pengguna Berbayar",
+      "last30Days": "30 Hari Terakhir"
+    },
+    "userRevenue": {
+      "title": "Statistik Pengguna & Pendapatan",
+      "subtitle": "Visualisasikan progres dan keterlibatan dari bulan ke bulan.",
+      "users": "Pengguna",
+      "revenue": "Pendapatan",
+      "monthly": "Bulanan",
+      "quarterly": "Kuartalan",
+      "annually": "Tahunan"
+    },
+    "apiToken": {
+      "title": "Penggunaan Token API",
+      "totalApiTokenUsed": "Total Token API Digunakan",
+      "tokenUsed": "Token digunakan",
+      "configuredKey": "{count, plural, one {# kunci API terkonfigurasi} other {# kunci API terkonfigurasi}}",
+      "viewAllUsageDetails": "Lihat Semua Detail Penggunaan"
+    },
+    "userAnalytics": {
+      "title": "Analitik Pengguna",
+      "subtitle": "Wawasan pengguna platform",
+      "totalUsers": "Total Pengguna",
+      "freeUsers": "Pengguna Gratis",
+      "paidUsers": "Pengguna Berbayar",
+      "ofTotalUser": "dari total pengguna",
+      "thisMonth": "Bulan Ini",
+      "fromLastMonth": "dari bulan lalu",
+      "thisYear": "Tahun Ini",
+      "fromLastYear": "dari tahun lalu"
+    },
+    "projectAnalytics": {
+      "title": "Analitik Proyek",
+      "subtitle": "Lihat wawasan proyek secara terperinci",
+      "totalProjects": "Total Proyek",
+      "today": "Hari Ini",
+      "yesterday": "Kemarin",
+      "projectCreated": "Proyek dibuat",
+      "thisMonth": "Bulan Ini",
+      "fromLastMonth": "dari bulan lalu",
+      "thisYear": "Tahun Ini",
+      "fromLastYear": "dari tahun lalu"
+    },
+    "recentTransactions": {
+      "title": "Transaksi Terbaru",
+      "searchPlaceholder": "Cari...",
+      "filter": "Saring",
+      "table": {
+        "paidBy": "Dibayar Oleh",
+        "packageName": "Nama Paket",
+        "price": "Harga",
+        "paidDate": "Tanggal Pembayaran",
+        "status": "Status",
+        "actions": "Aksi"
+      },
+      "packages": {
+        "starterMonthly": "Starter - Bulanan",
+        "growthYearly": "Growth - Tahunan",
+        "premiumMonthly": "Premium - Bulanan"
+      },
+      "statuses": {
+        "active": "Aktif",
+        "expired": "Kedaluwarsa"
+      },
+      "pagination": {
+        "previous": "Sebelumnya",
+        "next": "Berikutnya",
+        "pageOf": "Halaman {current} dari {total}"
+      }
+    }
+  },
+  "sales": {
+    "salesStats": {
+      "title": "Dashboard Penjualan",
+      "subtitle": "Lacak pendapatan, performa, dan pertumbuhan penjualan secara langsung",
+      "selectDateRange": "Pilih rentang tanggal",
+      "export": "Ekspor",
+      "totalRevenue": "Total Pendapatan",
+      "totalSales": "Total Penjualan",
+      "conversionRate": "Tingkat Konversi",
+      "refundRate": "Tingkat Pengembalian Dana",
+      "vsLastMonth": "vs bulan lalu",
+      "newSales": "Penjualan Baru"
+    },
+    "userRevenueStats": {
+      "title": "Statistik Pengguna & Pendapatan",
+      "subtitle": "Visualisasikan progres dan keterlibatan dari bulan ke bulan.",
+      "daily": "Harian",
+      "weekly": "Mingguan",
+      "monthly": "Bulanan",
+      "onlineSales": "Penjualan Daring",
+      "offlineSales": "Penjualan Luring"
+    },
+    "userRetention": {
+      "title": "Retensi Pengguna",
+      "subtitle": "Keterlibatan pengguna dari waktu ke waktu",
+      "increasedVsLastWeek": "Meningkat vs minggu lalu"
+    },
+    "salesByChannel": {
+      "title": "Penjualan Berdasarkan Kanal",
+      "subtitle": "Ringkasan performa kanal",
+      "increasedVsLastWeek": "Meningkat vs minggu lalu",
+      "channels": {
+        "website": "Situs Web",
+        "email": "Surel",
+        "socialMedia": "Media Sosial"
+      },
+      "table": {
+        "channels": "Kanal",
+        "metric": "Metrik",
+        "total": "Total"
+      }
+    },
+    "salesByCountry": {
+      "title": "Penjualan Berdasarkan Negara",
+      "subtitle": "Ringkasan penjualan per negara",
+      "countries": {
+        "usa": "AS",
+        "france": "Prancis",
+        "japan": "Jepang",
+        "germany": "Jerman"
+      }
+    },
+    "topProducts": {
+      "title": "Produk Teratas",
+      "table": {
+        "productName": "Nama Produk",
+        "category": "Kategori",
+        "sales": "Penjualan",
+        "earnings": "Pendapatan",
+        "stocks": "Stok",
+        "status": "Status"
+      },
+      "products": {
+        "classicDenimJacket": "Jaket Denim Klasik",
+        "slimFitChinos": "Chinos Slim Fit",
+        "organicCottonTShirt": "Kaos Katun Organik",
+        "leatherAnkleBoots": "Sepatu Bot Kulit"
+      },
+      "variants": {
+        "threeSizes": "3 Ukuran",
+        "fourColors": "4 Warna",
+        "fiveColors": "5 Warna",
+        "sixSizes": "6 Ukuran"
+      },
+      "categories": {
+        "jacket": "Jaket",
+        "pants": "Celana",
+        "tShirt": "Kaos",
+        "footwear": "Alas Kaki"
+      },
+      "statuses": {
+        "inStock": "Tersedia",
+        "lowStock": "Stok Rendah",
+        "outOfStock": "Habis"
+      }
+    }
+  },
+  "finance": {
+    "totalBalanceOverview": {
+      "title": "Total Saldo",
+      "overview": "Ringkasan dana Anda saat ini",
+      "thanLastMonth": "dari bulan lalu",
+      "primaryAccount": "Akun Utama:",
+      "seeDetails": "Lihat Detail",
+      "transfer": "Transfer",
+      "received": "Diterima",
+      "balance": "Saldo"
+    },
+    "stats": {
+      "totalBalance": "Total Saldo",
+      "monthlyIncome": "Pemasukan Bulanan",
+      "totalSpent": "Total Pengeluaran",
+      "savingRate": "Tingkat Tabungan",
+      "thanLastMonth": "dari bulan lalu",
+      "goalProgress": "Sasaran: 30% - sisa 3,9%"
+    },
+    "cashflow": {
+      "title": "Ringkasan Arus Kas",
+      "totalRevenue": "Total Pendapatan",
+      "income": "Pemasukan",
+      "expense": "Pengeluaran"
+    },
+    "spending": {
+      "title": "Pengeluaran",
+      "yearly": "Tahunan",
+      "monthly": "Bulanan",
+      "total": "Total",
+      "categories": {
+        "activity": "Aktivitas",
+        "onlinePurchases": "Pembelian Daring",
+        "groceries": "Kebutuhan Pokok",
+        "digitalGoods": "Barang Digital",
+        "stationery": "Alat Tulis",
+        "others": "Lainnya"
+      }
+    },
+    "quickSend": {
+      "title": "Kirim Cepat",
+      "sendFrom": "Kirim Dari",
+      "currency": "Mata Uang",
+      "amount": "Jumlah",
+      "sendMoney": "Kirim Uang"
+    },
+    "myCards": {
+      "title": "Kartu Saya",
+      "addCard": "Tambah Kartu",
+      "virtualCard": "Kartu Virtual",
+      "recentTransactions": "Transaksi Terbaru",
+      "seeAllTransactions": "Lihat Semua Transaksi",
+      "transactions": {
+        "paymentReceived": "Pembayaran Diterima",
+        "cashbackDesc": "Cashback dari Stellar Rewards",
+        "netflixSubscription": "Langganan Netflix",
+        "netflixDesc": "Biaya langganan bulan September",
+        "moneyReceived": "Uang diterima",
+        "paypalDesc": "Pembayaran diterima via PayPal",
+        "googleAds": "Google Ads",
+        "googleAdsDesc": "Pembayaran diterima dari google ads"
+      }
+    },
+    "transactionsTable": {
+      "title": "Transaksi Terbaru",
+      "searchPlaceholder": "Cari...",
+      "filter": "Saring",
+      "table": {
+        "orderId": "ID Pesanan",
+        "activity": "Aktivitas",
+        "price": "Harga",
+        "date": "Tanggal",
+        "status": "Status"
+      },
+      "activities": {
+        "hotelBooking": "Pemesanan Hotel",
+        "onlineShopping": "Belanja Daring",
+        "gamePurchase": "Pembelian Game",
+        "utilityBillPayment": "Pembayaran Tagihan Utilitas",
+        "onlineCourseEnrollment": "Pendaftaran Kursus Daring"
+      },
+      "statuses": {
+        "completed": "Selesai",
+        "inProgress": "Sedang Berjalan"
+      }
+    }
+  }
+}
