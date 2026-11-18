@@ -56,3 +56,6 @@ yarn-error.log*
 # TypeScript build info & generated files
 *.tsbuildinfo
 next-env.d.ts
+
+# Superpowers agent scratch & SDD worktrees
+.superpowers/
