@@ -63,9 +63,9 @@ src/app/
 │   └── profil/page.tsx            → /admin/profil      (A-08: Profil & Keamanan Admin)
 ├── peta-partisipasi/
 │   └── page.tsx                   → /peta-partisipasi  (P-02: Peta Partisipasi Spasial)
-├── signin/                        ← Zona Autentikasi
+├── login/                         ← Zona Autentikasi
 │   ├── layout.tsx                 ← Auth Shell minimalis (Layar Penuh, Card Tengah)
-│   └── page.tsx                   → /signin            (A-01: Login Admin Kelurahan)
+│   └── page.tsx                   → /login             (A-01: Login Admin Kelurahan)
 ├── layout.tsx                     ← Root Layout Aplikasi (ThemeProvider, Direction, Tooltip)
 ├── not-found.tsx                  ← Halaman Not Found Global
 └── page.tsx                       → /                  (P-01: Dashboard Publik)
@@ -117,7 +117,7 @@ src/legacy-demo/                   ← Arsip Referensi Kode Demo Bawaan Template
 
 ### B. Zona Internal Admin Kelurahan (Autentikasi Diperlukan)
 
-#### 3. A-01: Layar Login Admin (`/signin`)
+#### 3. A-01: Layar Login Admin (`/login`)
 - **Tujuan:** Pintu masuk otentikasi tunggal Admin Kelurahan (BR-02).
 - **Fitur & Keamanan:**
   - Input Username & Password dengan toggle intip kata sandi (👁) tanpa blokir paste.

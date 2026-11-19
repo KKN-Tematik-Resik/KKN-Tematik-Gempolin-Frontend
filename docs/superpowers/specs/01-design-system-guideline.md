@@ -143,3 +143,84 @@ $$\text{Jarak Internal Mikro } (4\text{px}-8\text{px}) < \text{Jarak Antar-Eleme
 - Kontainer utama memiliki padding kiri-kanan simetris (`px-4 sm:px-6 lg:px-8` dengan batas `max-w-7xl` atau `max-w-(--breakpoint-2xl)`).
 - Sisi kiri kartu atas tegak lurus sejajar dengan sisi kiri tabel dan batas peta di bawahnya (*vertical alignment grid*).
 - Radius sudut konsisten: `rounded-xl` (12px) untuk kontainer/kartu, `rounded-lg` (8px) untuk tombol/input, `rounded-full` untuk badge/pill.
+
+---
+
+## 4. Standar Desain Paginasi Tabel Terpadu (*Unified Table Pagination Standard*)
+
+Setiap kali antarmuka menyajikan data dalam bentuk tabel (baik tabel ringkasan publik, tabel spasial, maupun tabel rekap internal admin), pengembang dan AI agent **WAJIB** menyertakan footer paginasi terpadu dengan desain, struktur, dan perilaku yang seragam.
+
+### A. Anatomi Footer Paginasi
+Footer tabel wajib diletakkan langsung di dalam kontainer kartu pembungkus tabel (`overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900`) tepat di bawah elemen `<Table>`:
+
+```
++-----------------------------------------------------------------------------------+
+|  [Tabel Data: TableHeader + TableBody dengan scroll horizontal aman]             |
++-----------------------------------------------------------------------------------+
+|  [Footer: border-t border-gray-100 bg-gray-50/50 dark:border-gray-800...]        |
+|                                                                                   |
+|  Menampilkan 1–10 dari 67 data                   [ < ] [ 1 ] [ 2 ] ... [ 7 ] [ > ]|
+|  (Sisi Kiri: Ringkasan Tabular)                  (Sisi Kanan: Kontrol Paginasi)   |
++-----------------------------------------------------------------------------------+
+```
+
+### B. Aturan Desain & Interaksi Paginasi
+1. **Ukuran Halaman Default:**
+   - Standar ukuran halaman (*page size*) adalah **10 baris per halaman** (`PAGE_SIZE = 10`).
+2. **Ringkasan Data Sisi Kiri:**
+   - Wajib mencantumkan rentang baris aktif dan total data:  
+     `Menampilkan X–Y dari N [nama entitas]`
+   - Angka wajib menggunakan format numerik lokal Indonesia (`id-ID`) dan class `tabular-nums font-semibold text-gray-800 dark:text-gray-200`.
+3. **Penyembunyian Bersyarat (*Conditional Render*):**
+   - Jika total data $\le$ ukuran halaman (`totalPages <= 1`), kontrol tombol angka/navigasi **disembunyikan**, tetapi baris ringkasan teks di sisi kiri **tetap ditampilkan** agar pengguna tahu jumlah total data terdata.
+4. **Gaya Visual Tombol Paginasi:**
+   - Gunakan komponen primitif resmi `@/components/ui/pagination`:
+     - Tombol navigasi (`PaginationPrevious`, `PaginationNext`): `size="icon" variant="outline"` dengan ikon panah.
+     - Tombol angka (`PaginationLink`): `size="icon" variant="outline"`.
+     - Tombol halaman aktif (`isActive={true}`): Berlatar belakang warna primer `brand` kontras tinggi (`bg-brand-600 text-white dark:bg-brand-500`).
+     - Pemisah Elipsis (`PaginationEllipsis`): Titik tiga halus vertikal/horizontal untuk melompati rentang halaman.
+   - Status Non-Aktif (*Disabled*): Tombol Previous wajib disabled jika berada di halaman 1, dan tombol Next wajib disabled jika berada di halaman terakhir.
+
+---
+
+## 5. Pedoman Responsif & Adaptasi Perangkat (*Responsive Layout & Breakpoint System*)
+
+Sesuai standar non-fungsional antarmuka (`NFR-25`), aplikasi harus responsif sempurna dan dapat dioperasikan secara nyaman mulai dari layar ponsel pintar terkecil (lebar 360px), tablet, hingga layar monitor desktop lebar (1920px+).
+
+### A. Matriks Breakpoint Tailwind CSS
+
+| Breakpoint | Lebar Layar | Target Perangkat | Karakteristik Tata Letak |
+| :--- | :--- | :--- | :--- |
+| **Default (Base)** | `< 640px` | Ponsel Cerdas (360px–639px) | Tata letak 1 kolom vertikal, padding `p-4`, target sentuh diperbesar ($\ge 44$px). |
+| **`sm:`** | `$\ge$ 640px` | Ponsel Lebar / Tablet Vertikal | Grid 2 kolom, filter bar beralih ke semi-horizontal. |
+| **`md:`** | `$\ge$ 768px` | Tablet Horizontal (iPad) | Kontainer mulai memanfaatkan lebar samping, gap `gap-6`. |
+| **`lg:`** | `$\ge$ 1024px` | Laptop / Desktop Standar | Layout 2-panel (Peta + Legenda mengambang), Drawer slide-over 480px–520px. |
+| **`xl:`** | `$\ge$ 1280px` | Monitor Desktop Lebar | Kontainer dipusatkan dengan `max-w-7xl` simetris (*equal edges*). |
+
+### B. Adaptasi Responsif Paginasi (Dual-Mode Pagination)
+Untuk menjaga keterbacaan pada perangkat layar sempit tanpa memicu overflow horizontal:
+1. **Tampilan Mobile (`< sm` / `< 640px`):**
+   - Gunakan **Mode Stepper Ringkas**:
+     ```tsx
+     <div className="flex items-center justify-between sm:hidden">
+       <span className="text-xs text-gray-500 dark:text-gray-400">
+         Hal. {safePage} dari {totalPages}
+       </span>
+       <div className="flex items-center gap-1.5">
+         <PaginationPrevious size="icon" disabled={safePage <= 1} ... />
+         <PaginationNext size="icon" disabled={safePage >= totalPages} ... />
+       </div>
+     </div>
+     ```
+2. **Tampilan Desktop (`≥ sm` / `≥ 640px`):**
+   - Tampilkan baris paginasi lengkap (`PaginationContent`) dengan tombol-tombol nomor halaman dan elipsis di sebelah kanan teks ringkasan data.
+
+### C. Penanganan Tabel Responsif (*Table Overflow Protocol*)
+- Seluruh tabel wajib dibungkus kontainer `<div className="overflow-x-auto">` di dalam kartu berbingkai.
+- Dilarang membuat teks di dalam sel tabel wrap sembarangan; gunakan `whitespace-nowrap` pada kolom-kolom penting (tanggal, berat, persentase, status badge).
+- Kolom teks panjang (seperti nama penanggung jawab atau catatan) wajib diberikan batas lebar maksimal (`max-w-xs truncate`).
+
+### D. Ergonomi Sentuh & Tombol Mobile (*Touch Targets - Fitts's Law*)
+- Pada layar seluler, elemen interaktif (tombol, dropdown `<select>`, input pencarian) wajib memiliki tinggi minimal 40px–44px (`h-10` s.d. `h-11`).
+- Jarak antar tombol aksi minimal 8px (`gap-2`) untuk mencegah salah tekan jari (*fat-finger prevention*).
+
