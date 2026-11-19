@@ -14,35 +14,39 @@ import SidebarNavGroup from "./sidebar-nav-group";
 import SidebarWidget from "./sidebar-widget";
 import { MenuType, NavItem } from "./types";
 
-const menuSections: { type: MenuType; labelKey: string; items: NavItem[] }[] = [
-  { type: "main", labelKey: "groups.mainMenu", items: navItems },
-  { type: "others", labelKey: "groups.publicPortal", items: othersItems },
-  { type: "support", labelKey: "groups.support", items: supportItems },
-];
+interface AppSidebarProps {
+  customNavItems?: NavItem[];
+}
 
-const findMatchingSubmenu = (path: string) => {
-  for (const section of menuSections) {
-    for (let index = 0; index < section.items.length; index++) {
-      const nav = section.items[index];
-      if (
-        nav.subItems?.some(
-          (subItem) =>
-            subItem.path === path ||
-            (subItem.path === "/ai-settings" && path.startsWith("/ai-settings")),
-        )
-      ) {
-        return { type: section.type, index };
-      }
-    }
-  }
-  return null;
-};
-
-export default function AppSidebar() {
+export default function AppSidebar({ customNavItems }: AppSidebarProps) {
   const { open, isMobile, isHovered } = useSidebar();
   const pathname = usePathname();
 
   const showContent = open || isHovered || isMobile;
+
+  const menuSections: { type: MenuType; labelKey: string; items: NavItem[] }[] = [
+    { type: "main", labelKey: "groups.mainMenu", items: customNavItems ?? navItems },
+    { type: "others", labelKey: "groups.publicPortal", items: customNavItems ? [] : othersItems },
+    { type: "support", labelKey: "groups.support", items: customNavItems ? [] : supportItems },
+  ];
+
+  const findMatchingSubmenu = (path: string) => {
+    for (const section of menuSections) {
+      for (let index = 0; index < section.items.length; index++) {
+        const nav = section.items[index];
+        if (
+          nav.subItems?.some(
+            (subItem) =>
+              subItem.path === path ||
+              (subItem.path === "/ai-settings" && path.startsWith("/ai-settings")),
+          )
+        ) {
+          return { type: section.type, index };
+        }
+      }
+    }
+    return null;
+  };
 
   const [openSubmenu, setOpenSubmenu] = useState<{
     type: MenuType;
