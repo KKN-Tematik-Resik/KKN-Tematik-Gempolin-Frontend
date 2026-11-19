@@ -1,3 +1,4 @@
 export { cn } from "./cn";
 export { getInitials } from "./get-initials";
 export * from "./calculations";
+export * from "./formatters";
