@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Map as MapLibreMap, MapLayerMouseEvent, LayerSpecification } from "maplibre-gl";
+import type { Map as MapLibreMap, MapLayerMouseEvent, LayerSpecification, StyleSpecification } from "maplibre-gl";
 import { getParticipationColor } from "@/utils/calculations";
 import type { SpatialSummaryItem, ParticipationClass } from "@/types/spatial";
 import { useTheme } from "@/context/theme-context";
@@ -361,7 +361,7 @@ export default function SpatialMapInner({
     // Gunakan diff: false agar style swap memicu reload penuh dan transformStyle menginjeksi layer secara atomik
     map.setStyle(isDark ? CARTO_DARK_MATTER : CARTO_POSITRON, {
       diff: false,
-      transformStyle: (_prev, nextStyle) => ({
+      transformStyle: (_prev: StyleSpecification | undefined, nextStyle: StyleSpecification) => ({
         ...nextStyle,
         sources: {
           ...nextStyle.sources,

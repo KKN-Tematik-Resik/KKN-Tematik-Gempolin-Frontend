@@ -14,7 +14,7 @@ export default function DangerZoneCard() {
   const handleLogoutAll = () => {
     setIsLoggingOut(true);
     setTimeout(() => {
-      router.push("/signin");
+      router.push("/login");
     }, 500);
   };
 

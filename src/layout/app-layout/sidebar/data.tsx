@@ -1,5 +1,6 @@
 import {
   BoxIcon,
+  GroupIcon,
   LayoutGridIcon,
   PieChartIcon,
   TimeIcon,
@@ -44,6 +45,14 @@ export const navItems: NavItem[] = [
     icon: <UserCircleIcon className="size-6" />,
     key: "profilAdmin",
     path: "/admin/profil",
+  },
+];
+
+export const superAdminNavItems: NavItem[] = [
+  {
+    icon: <GroupIcon className="size-6" />,
+    key: "kelolaAdmin",
+    path: "/super-admin",
   },
 ];
 
