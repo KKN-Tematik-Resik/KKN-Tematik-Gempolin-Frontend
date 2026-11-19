@@ -1,6 +1,6 @@
 # Gempolin — Frontend Application
 
-**Gempolin** adalah Sistem Informasi Pengelolaan Sampah Warga Kelurahan Gempolsari berbasis web menggunakan arsitektur modern Next.js 16 (App Router), React 19, TypeScript Strict, dan Tailwind CSS v4.
+**Gempolin** adalah Sistem Informasi Pengelolaan Sampah Warga Kelurahan Gempolsari berbasis web responsive menggunakan arsitektur modern Next.js 16 (App Router), React 19, TypeScript Strict, dan Tailwind CSS v4.
 
 ---
 
