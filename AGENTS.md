@@ -60,9 +60,9 @@ src/app/
 │   └── profil/page.tsx            → /admin/profil      (A-08: Profil & Keamanan Admin)
 ├── peta-partisipasi/
 │   └── page.tsx                   → /peta-partisipasi  (P-02: Peta Partisipasi Spasial)
-├── signin/                        ← Zona Autentikasi
+├── login/                         ← Zona Autentikasi
 │   ├── layout.tsx                 ← Auth Shell minimalis (Layar Penuh, Card Tengah)
-│   └── page.tsx                   → /signin            (A-01: Login Admin Kelurahan)
+│   └── page.tsx                   → /login             (A-01: Login Admin Kelurahan)
 ├── layout.tsx                     ← Root Layout Aplikasi (ThemeProvider, Direction, Tooltip)
 ├── not-found.tsx                  ← Halaman Not Found Global
 └── page.tsx                       → /                  (P-01: Dashboard Publik)
@@ -79,10 +79,10 @@ src/legacy-demo/                   ← Arsip Referensi Kode Demo Bawaan Template
 1. **Dilarang Tanda Kurung (*No Parentheses Routing*):**
    - **DILARANG KERAS** menggunakan tanda kurung `(...)` pada nama folder di seluruh direktori proyek.
    - Semua penamaan folder wajib menggunakan **kebab-case** huruf kecil dipisah tanda hubung (contoh: `recent-order`, `bank-sampah`, `pembaruan-data`).
-   - Hubungan folder dan URL adalah **1-to-1 direct mapping**: folder `admin` menjadi URL `/admin`, folder `signin` menjadi URL `/signin`.
+   - Hubungan folder dan URL adalah **1-to-1 direct mapping**: folder `admin` menjadi URL `/admin`, folder `login` menjadi URL `/login`.
 2. **Layout Spesifik per Direktori:**
    - Folder `admin/` memiliki `layout.tsx` sendiri untuk membungkus seluruh halaman internal dengan sidebar.
-   - Folder `signin/` memiliki `layout.tsx` sendiri untuk membungkus kartu login.
+   - Folder `login/` memiliki `layout.tsx` sendiri untuk membungkus kartu login.
    - Halaman root `/` dan `/peta-partisipasi` langsung menggunakan root layout tanpa terkena sidebar admin.
 3. **Penyimpanan Arsip Demo Template di Luar `src/app/`:**
    - Seluruh halaman demo template bawaan TailAdmin diparkir di `src/legacy-demo/` (di luar `src/app/`) agar Next.js tidak menjadikannya rute aplikasi dan hierarki routing 100% bersih.

@@ -1,26 +1,19 @@
-import ComponentCard from "@/components/common/component-card";
 import PageBreadcrumb from "@/components/common/page-breadcrumb";
 import type { Metadata } from "next";
+import DemografiClient from "./demografi-client";
+import { mockDemografiDataset } from "./mock-data";
 
 export const metadata: Metadata = {
-  title: "Demografi & Partisipasi Warga | Gempolin Kelurahan Gempolsari",
-  description: "Demografi dan Partisipasi Pengelolaan Sampah Warga Kelurahan Gempolsari",
+  title: "Demografi & 6 Indikator Partisipasi | Gempolin Kelurahan Gempolsari",
+  description:
+    "Analisis mendalam data demografi dan 6 indikator pilah-olah sampah warga Kelurahan Gempolsari",
 };
 
 export default function DemografiPage() {
   return (
-    <div>
-      <PageBreadcrumb pageTitle="Demografi & Partisipasi Warga" />
-      <ComponentCard
-        title="Demografi & Partisipasi Warga"
-        desc="Sistem Informasi Pengelolaan Sampah Kelurahan Gempolsari"
-      >
-        <div className="flex min-h-[300px] flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 p-8 text-center dark:border-gray-800">
-          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Modul Demografi & Partisipasi Warga sedang disiapkan.
-          </p>
-        </div>
-      </ComponentCard>
+    <div className="space-y-6">
+      <PageBreadcrumb pageTitle="Demografi & 6 Indikator Partisipasi" />
+      <DemografiClient initialData={mockDemografiDataset} />
     </div>
   );
 }

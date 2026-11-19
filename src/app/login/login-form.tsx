@@ -4,10 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "@/i18n/navigation";
 import { EyeCloseIcon, EyeIcon, TrashBinIcon } from "@/icons";
 import { useRef, useState } from "react";
 
+type RoleType = "admin" | "super-admin";
+
 export default function LoginForm() {
+  const router = useRouter();
+  const [role, setRole] = useState<RoleType>("admin");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
@@ -18,21 +25,58 @@ export default function LoginForm() {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (role === "super-admin") {
+      router.push("/super-admin");
+    } else {
+      router.push("/admin");
+    }
+  };
+
   return (
     <div className="w-full rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-lg sm:p-8 dark:border-gray-800 dark:bg-gray-900">
       <div className="text-center">
+        {/* Role Switcher Pill */}
+        <div className="mb-5 inline-flex rounded-xl border border-gray-200 bg-gray-100/80 p-1 dark:border-gray-800 dark:bg-gray-800/60">
+          <button
+            type="button"
+            onClick={() => setRole("admin")}
+            className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+              role === "admin"
+                ? "bg-white text-gray-900 shadow-xs dark:bg-gray-700 dark:text-white"
+                : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+            }`}
+          >
+            Admin Kelurahan
+          </button>
+          <button
+            type="button"
+            onClick={() => setRole("super-admin")}
+            className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+              role === "super-admin"
+                ? "bg-white text-brand-700 shadow-xs dark:bg-gray-700 dark:text-brand-400"
+                : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+            }`}
+          >
+            Super Admin
+          </button>
+        </div>
+
         <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-950/80 dark:text-brand-400">
           <TrashBinIcon className="size-6" />
         </div>
         <h1 className="text-title-sm font-bold text-gray-900 dark:text-white sm:text-title-md">
-          Login Admin Kelurahan
+          {role === "admin" ? "Login Admin Kelurahan" : "Login Super Admin"}
         </h1>
         <p className="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
-          Gempolin · Sistem Informasi Pengelolaan Sampah Kelurahan Gempolsari
+          {role === "admin"
+            ? "Gempolin · Sistem Informasi Pengelolaan Sampah Kelurahan Gempolsari"
+            : "Kelola akun pengguna dan hak akses Admin Kelurahan (Draft)"}
         </p>
       </div>
 
-      <form className="mt-6 space-y-4 sm:space-y-5" noValidate>
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4 sm:space-y-5">
         <Field>
           <Label htmlFor="username">Username</Label>
           <Input
@@ -40,7 +84,13 @@ export default function LoginForm() {
             name="username"
             type="text"
             autoComplete="username"
-            placeholder="Masukkan username"
+            placeholder={
+              role === "admin"
+                ? "Masukkan username admin"
+                : "Masukkan username super admin"
+            }
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             onKeyDown={handleUsernameKeyDown}
           />
         </Field>
@@ -55,6 +105,8 @@ export default function LoginForm() {
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
               placeholder="Masukkan kata sandi"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="pe-11"
             />
             <button
@@ -75,7 +127,7 @@ export default function LoginForm() {
         </Field>
 
         <Button type="submit" className="w-full" size="lg">
-          Masuk
+          {role === "admin" ? "Masuk Admin" : "Masuk Super Admin"}
         </Button>
       </form>
     </div>

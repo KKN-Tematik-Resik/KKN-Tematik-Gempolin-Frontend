@@ -1,4 +1,5 @@
 import type { ParticipationClass } from "@/types/spatial";
+import type { DemografiMetrics, AktivitasType } from "@/types/demografi";
 
 /**
  * Utility functions for domain calculations (Gempolin).
@@ -121,4 +122,34 @@ export function formatPercentage(percentage: number | null): string {
     return "Data tidak tersedia";
   }
   return `${percentage.toFixed(1)}%`;
+}
+
+/**
+ * BR-06: Agregasi Hierarki Demografi (RW / Kelurahan)
+ * Menjumlahkan pembilang dan penyebut seluruh entitas di bawahnya.
+ * DILARANG merata-ratakan persentase!
+ */
+export function aggregateDemografiMetrics(
+  items: DemografiMetrics[],
+): DemografiMetrics {
+  return items.reduce<DemografiMetrics>(
+    (acc, curr) => ({
+      terdata: acc.terdata + curr.terdata,
+      memilah: acc.memilah + curr.memilah,
+      mengolah: acc.mengolah + curr.mengolah,
+    }),
+    { terdata: 0, memilah: 0, mengolah: 0 },
+  );
+}
+
+/**
+ * Menghitung persentase aktivitas (memilah / mengolah) dari sebuah metrik demografi.
+ * Mengembalikan null jika terdata <= 0 (BR-07).
+ */
+export function calculateMetricsRate(
+  metrics: DemografiMetrics,
+  activity: AktivitasType,
+): number | null {
+  const numerator = activity === "memilah" ? metrics.memilah : metrics.mengolah;
+  return calculateParticipationRate(numerator, metrics.terdata);
 }

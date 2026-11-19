@@ -25,6 +25,7 @@
     },
     "items": {
       "adminDashboard": "Admin Dashboard",
+      "kelolaAdmin": "Manage Admins",
       "gempolin": "Gempolin Recap",
       "demografi": "Demography & Participation",
       "bankSampah": "Waste Bank",
