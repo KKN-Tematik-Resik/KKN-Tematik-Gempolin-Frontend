@@ -4,3 +4,5 @@ import { routing } from "./routing";
 
 export const { Link, getPathname, redirect, usePathname, useRouter } =
   createNavigation(routing);
+
+export { useSearchParams } from "next/navigation";
