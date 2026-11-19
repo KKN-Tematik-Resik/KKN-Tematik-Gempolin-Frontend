@@ -128,6 +128,16 @@ src/legacy-demo/                   ← Arsip Referensi Kode Demo Bawaan Template
   - Setiap warna wajib memiliki pasangan mode gelap `dark:`.
   - Gabungkan class menggunakan helper `cn(...)` dari `@/utils`.
 
+### F. Standar Paginasi & Responsivitas Tabel Terpadu
+- **Wajib Paginasi Seragam:** Seluruh tampilan tabel data dinamis wajib memiliki footer paginasi terpadu (default 10 baris/halaman) menggunakan primitif `@/components/ui/pagination`.
+- **Anatomi Footer Tabel:**
+  - Sisi kiri: Ringkasan data tabular `"Menampilkan X–Y dari N [entitas]"` bertipe `tabular-nums`.
+  - Sisi kanan: Kontrol paginasi terpadu (sembunyikan tombol navigasi jika `totalPages <= 1`).
+- **Dual-Mode Responsif:**
+  - Layar seluler (`< sm` / `< 640px`): Mode ringkas (*Compact Stepper*: teks `"Hal. X dari Y"` + sepasang tombol prev/next).
+  - Layar desktop (`≥ sm`): Mode tombol angka lengkap dan elipsis.
+- **Tabel Responsif:** Seluruh tabel wajib dibungkus kontainer `<div className="overflow-x-auto">` di dalam kartu berbingkai agar tidak merusak layout pada perangkat sempit.
+
 ---
 
 ## 5. Implementasi Rumus Bisnis Persampahan
