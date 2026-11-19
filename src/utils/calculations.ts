@@ -1,3 +1,5 @@
+import type { ParticipationClass } from "@/types/spatial";
+
 /**
  * Utility functions for domain calculations (Gempolin).
  */
@@ -25,7 +27,7 @@ export function calculateDelta(current: number, previous: number): DeltaResult {
  */
 export function isDataAvailable(value: number | null | undefined): value is number {
   return typeof value === "number" && !Number.isNaN(value) && value > 0;
-import type { ParticipationClass } from "@/types/spatial";
+}
 
 /**
  * BR-05 & BR-07: Rumus Persentase Partisipasi
