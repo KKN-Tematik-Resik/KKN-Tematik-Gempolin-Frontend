@@ -155,7 +155,7 @@ export default function UserDropdown() {
 
         <DropdownMenuItem
           variant="destructive"
-          render={<Link href="/signin" />}
+          render={<Link href="/login" />}
         >
           <LogOutIcon />
           {t("signOut")}

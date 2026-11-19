@@ -1,26 +1,37 @@
-import ComponentCard from "@/components/common/component-card";
-import PageBreadcrumb from "@/components/common/page-breadcrumb";
 import type { Metadata } from "next";
+
+import AdminWelcomeHeader from "./components/admin-welcome-header";
+import OperationalMetricsCards from "./components/operational-metrics-cards";
+import DataSourceStatusCards from "./components/data-source-status-cards";
+import RtMonitoringSection from "./components/rt-monitoring-section";
+
+import {
+  mockDataSourceStatuses,
+  mockOperationalMetrics,
+  mockRtMonitoringData,
+} from "@/data/mock/admin-dashboard-data";
 
 export const metadata: Metadata = {
   title: "Dashboard Internal Admin | Gempolin Kelurahan Gempolsari",
-  description: "Dashboard Internal Pengelolaan Sampah Kelurahan Gempolsari",
+  description:
+    "Monitoring Operasional, Status Integrasi Sumber Data, dan Kelengkapan Data Wilayah Kelurahan Gempolsari",
 };
 
+// Server Component (Pre-Task Checklist #1: page.tsx wajib Server Component)
 export default function AdminDashboardPage() {
   return (
-    <div>
-      <PageBreadcrumb pageTitle="Dashboard Internal Admin" />
-      <ComponentCard
-        title="Dashboard Internal Admin"
-        desc="Sistem Informasi Pengelolaan Sampah Kelurahan Gempolsari"
-      >
-        <div className="flex min-h-[300px] flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 p-8 text-center dark:border-gray-800">
-          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Modul Dashboard Internal sedang disiapkan.
-          </p>
-        </div>
-      </ComponentCard>
+    <div className="space-y-8">
+      {/* Sambutan Ramah Admin & Breadcrumb */}
+      <AdminWelcomeHeader />
+
+      {/* Section 1: Metrik Operasional 4 KPI Cards */}
+      <OperationalMetricsCards metrics={mockOperationalMetrics} />
+
+      {/* Section 2: Status Integrasi & Kemutakhiran Sumber Data */}
+      <DataSourceStatusCards statuses={mockDataSourceStatuses} />
+
+      {/* Section 3: Tabel Data Pengelolaan Sampah per RT */}
+      <RtMonitoringSection initialData={mockRtMonitoringData} />
     </div>
   );
 }
