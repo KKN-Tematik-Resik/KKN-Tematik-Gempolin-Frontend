@@ -164,7 +164,7 @@ export default function SpatialTableView({
                 key={`${item.rw}-${item.rt}`}
                 className="transition-colors hover:bg-gray-50/80 dark:hover:bg-gray-800/40"
               >
-                {/* STRICT BR-01: Hanya RT & RW */}
+                {/* Hanya menampilkan agregat RT & RW */}
                 <TableCell className="px-4 py-3.5 text-start font-medium text-gray-900 dark:text-white">
                   <span>{item.rt}</span>{" "}
                   <span className="text-xs text-gray-500 dark:text-gray-400">

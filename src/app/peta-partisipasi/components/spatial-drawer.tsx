@@ -234,7 +234,7 @@ export default function SpatialDrawer({
             </div>
           </div>
 
-          {/* Bagian 3: Disclaimer Kepatuhan Privasi Warga (BR-01) */}
+          {/* Bagian 3: Disclaimer Kepatuhan Privasi Warga */}
           <div className="flex items-start gap-2.5 rounded-xl border border-emerald-200 bg-emerald-50/70 p-3.5 text-xs text-emerald-900 dark:border-emerald-900/50 dark:bg-emerald-950/20 dark:text-emerald-200">
             <CheckCircleIcon className="mt-0.5 size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
             <div>

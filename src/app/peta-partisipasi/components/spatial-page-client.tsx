@@ -225,7 +225,7 @@ export default function SpatialPageClient() {
           </div>
         </div>
       ) : (
-        /* Mode Fallback Tabel Spasial (FR-50) */
+        /* Mode Fallback Tabel Spasial */
         <SpatialTableView
           items={filteredItems}
           onSelectRt={handleSelectRtFromTable}

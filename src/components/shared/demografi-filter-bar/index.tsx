@@ -69,7 +69,7 @@ export default function DemografiFilterBar({
 
       {/* Filter Wilayah & Mode Tampilan & Tombol Reset */}
       <div className="flex flex-wrap items-center gap-3">
-        {/* Toggle Mode: Tabel vs Peta Interaktif (FR-40) */}
+        {/* Toggle Mode: Tabel vs Peta Interaktif */}
         <div className="inline-flex rounded-xl bg-gray-100 p-1 dark:bg-gray-800/80">
           <button
             type="button"

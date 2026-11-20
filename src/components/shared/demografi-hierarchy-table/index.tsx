@@ -89,7 +89,7 @@ export default function DemografiHierarchyTable({
     }
   };
 
-  // Kalkulasi total agregat kelurahan sesuai BR-06 (sum pembilang / sum penyebut)
+  // Kalkulasi total agregat kelurahan (sum pembilang / sum penyebut)
   const kelurahanAggregate = useMemo(() => {
     const allMetrics = filteredDataRw.map((rw) => rw[activeObjek]);
     const summary = aggregateDemografiMetrics(allMetrics);
@@ -118,7 +118,7 @@ export default function DemografiHierarchyTable({
           </h3>
           <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
             Kalkulasi tingkat RW murni dari akumulasi pembilang dan penyebut RT
-            di bawahnya (BR-06).
+            di bawahnya.
           </p>
         </div>
         <button
@@ -311,15 +311,10 @@ export default function DemografiHierarchyTable({
               );
             })}
 
-            {/* Baris Total Ringkasan Kelurahan (BR-06) */}
+            {/* Baris Total Ringkasan Kelurahan */}
             <TableRow className="border-t-2 border-gray-200 bg-gray-100/70 font-bold dark:border-gray-700 dark:bg-gray-800/80">
               <TableCell className="py-4 ps-5 pe-4 text-gray-900 sm:ps-6 dark:text-white">
-                <div className="flex items-center gap-2">
-                  <span>Total Agregat Kelurahan Gempolsari</span>
-                  <span className="rounded-full bg-brand-100 px-2 py-0.5 text-[10px] font-semibold text-brand-700 dark:bg-brand-950 dark:text-brand-300">
-                    BR-06
-                  </span>
-                </div>
+                <span>Total Agregat Kelurahan Gempolsari</span>
               </TableCell>
               <TableCell className="px-4 py-4 text-end text-gray-900 tabular-nums dark:text-white">
                 {formatNumber(kelurahanAggregate.metrics.terdata)}
@@ -349,9 +344,6 @@ export default function DemografiHierarchyTable({
       <div className="flex items-center justify-between border-t border-gray-100 px-5 py-3 text-xs text-gray-500 sm:px-6 dark:border-gray-800 dark:text-gray-400">
         <span className="tabular-nums">
           Menampilkan {filteredDataRw.length} RW ({kelurahanAggregate.totalRt} RT terdaftar)
-        </span>
-        <span className="text-[11px] text-gray-400 dark:text-gray-500">
-          * Privasi terjamin (UU PDP): Data disajikan murni pada tingkat RT/RW tanpa nama warga (BR-01).
         </span>
       </div>
     </div>
