@@ -105,10 +105,10 @@ export default function OperationalMetricsCards({ metrics }: Props) {
           </div>
           <div className="mt-4 border-t border-gray-100 pt-3 text-xs dark:border-gray-800">
             <Link
-              href="/admin/pembaruan-data"
+              href="/admin/sinkronisasi"
               className="inline-flex items-center gap-1 font-medium text-amber-600 hover:text-amber-700 hover:underline dark:text-amber-400 dark:hover:text-amber-300"
             >
-              <span>Periksa di Pembaruan Data</span>
+              <span>Periksa di Status Sinkronisasi</span>
               <ArrowRightIcon className="size-3" />
             </Link>
           </div>
@@ -136,7 +136,7 @@ export default function OperationalMetricsCards({ metrics }: Props) {
           </div>
           <div className="mt-4 border-t border-gray-100 pt-3 text-xs dark:border-gray-800">
             <Link
-              href="/admin/pembaruan-data"
+              href="/admin/sinkronisasi"
               className="inline-flex items-center gap-1 font-medium text-red-600 hover:text-red-700 hover:underline dark:text-red-400 dark:hover:text-red-300"
             >
               <span>Lihat log kesalahan</span>
