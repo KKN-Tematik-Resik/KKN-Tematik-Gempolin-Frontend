@@ -76,12 +76,12 @@ export default function UserDropdown() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem render={<Link href="/profile" />}>
+        <DropdownMenuItem render={<Link href="/admin/profil" />}>
           <UserCircleIcon className="size-6" />
           {t("editProfile")}
         </DropdownMenuItem>
 
-        <DropdownMenuItem render={<Link href="/profile" />}>
+        <DropdownMenuItem render={<Link href="/admin/profil" />}>
           <GearIcon className="size-6" />
           {t("accountSettings")}
         </DropdownMenuItem>

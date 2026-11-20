@@ -6,7 +6,6 @@ import {
   TimeIcon,
   TrashBinIcon,
   UploadIcon,
-  UserCircleIcon,
 } from "@/icons";
 import type { NavItem } from "./types";
 
@@ -40,11 +39,6 @@ export const navItems: NavItem[] = [
     icon: <TimeIcon className="size-6" />,
     key: "sinkronisasi",
     path: "/admin/sinkronisasi",
-  },
-  {
-    icon: <UserCircleIcon className="size-6" />,
-    key: "profilAdmin",
-    path: "/admin/profil",
   },
 ];
 
