@@ -54,8 +54,6 @@ src/app/
 │   ├── page.tsx                   → /admin             (A-02: Dashboard Internal Admin)
 │   ├── gempolin/page.tsx          → /admin/gempolin    (A-03: Rekap Pengolahan Gempolin)
 │   ├── demografi/page.tsx         → /admin/demografi   (A-04: Demografi & Partisipasi)
-│   ├── bank-sampah/page.tsx       → /admin/bank-sampah (A-05: Informasi Bank Sampah)
-│   ├── pembaruan-data/page.tsx    → /admin/pembaruan-data (A-06: Impor Data Excel)
 │   ├── sinkronisasi/page.tsx      → /admin/sinkronisasi (A-07: Log & Status Kemutakhiran)
 │   └── profil/page.tsx            → /admin/profil      (A-08: Profil & Keamanan Admin)
 ├── peta-partisipasi/
