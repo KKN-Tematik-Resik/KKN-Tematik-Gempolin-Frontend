@@ -75,7 +75,7 @@ export default function ComparisonCard({
           </div>
         </div>
 
-        {/* Kolom 3: Selisih Berat Terolah (FR-27) */}
+        {/* Kolom 3: Selisih Berat Terolah */}
         <div className="flex flex-col justify-between border-b border-gray-100 pb-4 sm:border-b-0 sm:border-e sm:pb-0 sm:pe-6 dark:border-gray-800">
           <div>
             <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
@@ -126,7 +126,7 @@ export default function ComparisonCard({
           </div>
         </div>
 
-        {/* Kolom 4: Selisih Request (FR-27) */}
+        {/* Kolom 4: Selisih Request */}
         <div className="flex flex-col justify-between">
           <div>
             <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
