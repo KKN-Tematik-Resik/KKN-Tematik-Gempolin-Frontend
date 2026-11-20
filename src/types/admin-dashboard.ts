@@ -1,4 +1,4 @@
-export type DataSourceType = "gempolin" | "demografi" | "bank_sampah";
+export type DataSourceType = "gempolin" | "demografi";
 
 export type QualityStatus = "lengkap" | "ditandai" | "kosong";
 
@@ -24,7 +24,7 @@ export interface OperationalMetrics {
   lastImportDate: string;
 }
 
-// FR-15 & FR-18: Struktur Baris Pemantauan RT mencakup Demografi, Gempolin, dan Bank Sampah
+// Struktur baris pemantauan RT mencakup Demografi dan Gempolin
 export interface RtMonitoringRow {
   id: string;
   rw: string;
@@ -40,13 +40,11 @@ export interface RtMonitoringRow {
   partisipasiMengolahPct: number | null;
   gempolinRequests: number | null;
   gempolinProcessedKg: number | null;
-  bankSampahKg: number | null;
   statusKualitas: QualityStatus;
   catatanAnomali?: string;
   terakhirDiperbarui: string;
 }
 
-// FR-18: Filter periode, wilayah (kelurahan, RW, RT), sumber data, dan status kualitas data
 export interface AdminDashboardFilterState {
   periode: string;
   rw: string;
