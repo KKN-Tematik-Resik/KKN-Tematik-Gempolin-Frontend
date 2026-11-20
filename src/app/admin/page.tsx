@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 import AdminWelcomeHeader from "./components/admin-welcome-header";
-import OperationalMetricsCards from "./components/operational-metrics-cards";
+import DataQualityOverviewCard from "./components/data-quality-overview-card";
 import DataSourceStatusCards from "./components/data-source-status-cards";
+import OperationalMetricsCards from "./components/operational-metrics-cards";
 import RtMonitoringSection from "./components/rt-monitoring-section";
 
 import {
@@ -17,20 +18,28 @@ export const metadata: Metadata = {
     "Monitoring Operasional, Status Integrasi Sumber Data, dan Kelengkapan Data Wilayah Kelurahan Gempolsari",
 };
 
-// Server Component (Pre-Task Checklist #1: page.tsx wajib Server Component)
 export default function AdminDashboardPage() {
   return (
-    <div className="space-y-8">
-      {/* Sambutan Ramah Admin & Breadcrumb */}
-      <AdminWelcomeHeader />
+    <div className="space-y-6">
+      {/* Header Sambutan, Periode Aktif & Akses Cepat */}
+      <AdminWelcomeHeader
+        lastImportDate={mockOperationalMetrics.lastImportDate}
+      />
 
-      {/* Section 1: Metrik Operasional 4 KPI Cards */}
+      {/* Baris 1: 4 Kartu Metrik Operasional & Kualitas Data */}
       <OperationalMetricsCards metrics={mockOperationalMetrics} />
 
-      {/* Section 2: Status Integrasi & Kemutakhiran Sumber Data */}
-      <DataSourceStatusCards statuses={mockDataSourceStatuses} />
+      {/* Baris 2: Status Sumber Data (Kiri) + Kelengkapan & Partisipasi Wilayah (Kanan) */}
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
+        <div className="xl:col-span-7">
+          <DataSourceStatusCards statuses={mockDataSourceStatuses} />
+        </div>
+        <div className="xl:col-span-5">
+          <DataQualityOverviewCard rows={mockRtMonitoringData} />
+        </div>
+      </div>
 
-      {/* Section 3: Tabel Data Pengelolaan Sampah per RT */}
+      {/* Baris 3: Tabel Pemantauan Data Wilayah per RW & RT */}
       <RtMonitoringSection initialData={mockRtMonitoringData} />
     </div>
   );

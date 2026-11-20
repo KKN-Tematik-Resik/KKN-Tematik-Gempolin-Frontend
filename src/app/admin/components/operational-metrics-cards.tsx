@@ -1,45 +1,36 @@
-import { OperationalMetrics } from "@/types/admin-dashboard";
 import { Link } from "@/i18n/navigation";
 import {
-  FileIcon,
-  TrashBinIcon,
   AlertIcon,
-  OctagonAlertIcon,
   ArrowRightIcon,
+  FileIcon,
+  OctagonAlertIcon,
+  TrashBinIcon,
 } from "@/icons";
+import type { OperationalMetrics } from "@/types/admin-dashboard";
 
-interface Props {
+interface OperationalMetricsCardsProps {
   metrics: OperationalMetrics;
 }
 
-export default function OperationalMetricsCards({ metrics }: Props) {
+export default function OperationalMetricsCards({
+  metrics,
+}: OperationalMetricsCardsProps) {
   return (
-    <section className="space-y-3">
-      {/* Judul Section 1 */}
-      <div>
-        <h3 className="text-base font-semibold text-gray-900 dark:text-white">
-          Ringkasan Operasional & Kualitas Data
-        </h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          Ikhtisar permintaan pengangkutan sampah, tonase terolah, serta status validasi data terkini.
-        </p>
-      </div>
-
-      {/* Grid 4 Kartu KPI Standar */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {/* KPI 1: Total Request Sampah */}
-        <div className="group flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-theme-xs sm:p-6 dark:border-gray-800 dark:bg-white/3">
+    <section aria-label="Ringkasan Operasional dan Kualitas Data">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {/* KPI 1: Permintaan Pengangkutan */}
+        <div className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 shadow-xs transition-shadow hover:shadow-theme-xs dark:border-gray-800 dark:bg-white/[0.03]">
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                Permintaan Pengangkutan
+                Permintaan Gempolin
               </span>
-              <div className="flex size-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
                 <FileIcon className="size-5" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold tabular-nums text-gray-900 dark:text-white">
+              <span className="text-2xl font-bold text-gray-900 tabular-nums dark:text-white">
                 {metrics.totalRequests.toLocaleString("id-ID")}
               </span>
               <span className="ms-1.5 text-xs text-gray-500 dark:text-gray-400">
@@ -47,27 +38,27 @@ export default function OperationalMetricsCards({ metrics }: Props) {
               </span>
             </div>
           </div>
-          <div className="mt-4 border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-gray-800 dark:text-gray-400">
-            <span>Berat Terverifikasi: </span>
-            <span className="font-semibold tabular-nums text-gray-700 dark:text-gray-300">
+          <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-gray-800 dark:text-gray-400">
+            <span>Berat Verifikasi</span>
+            <span className="font-semibold text-gray-700 tabular-nums dark:text-gray-300">
               {metrics.verifiedWeightKg.toLocaleString("id-ID")} kg
             </span>
           </div>
         </div>
 
         {/* KPI 2: Total Sampah Terolah */}
-        <div className="group flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-theme-xs sm:p-6 dark:border-gray-800 dark:bg-white/3">
+        <div className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 shadow-xs transition-shadow hover:shadow-theme-xs dark:border-gray-800 dark:bg-white/[0.03]">
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
                 Total Sampah Terolah
               </span>
-              <div className="flex size-9 items-center justify-center rounded-lg bg-sky-50 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400">
                 <TrashBinIcon className="size-5" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold tabular-nums text-gray-900 dark:text-white">
+              <span className="text-2xl font-bold text-gray-900 tabular-nums dark:text-white">
                 {metrics.totalProcessedWeightKg.toLocaleString("id-ID")}
               </span>
               <span className="ms-1.5 text-xs text-gray-500 dark:text-gray-400">
@@ -76,26 +67,26 @@ export default function OperationalMetricsCards({ metrics }: Props) {
             </div>
           </div>
           <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-gray-800 dark:text-gray-400">
-            <span>Setara Tonase:</span>
-            <span className="font-semibold tabular-nums text-sky-600 dark:text-sky-400">
+            <span>Setara Tonase</span>
+            <span className="font-semibold text-sky-600 tabular-nums dark:text-sky-400">
               {(metrics.totalProcessedWeightKg / 1000).toFixed(2)} Ton
             </span>
           </div>
         </div>
 
-        {/* KPI 3: Data Perlu Verifikasi (Ditandai) */}
-        <div className="group flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-theme-xs sm:p-6 dark:border-gray-800 dark:bg-white/3">
+        {/* KPI 3: Perlu Verifikasi Ulang */}
+        <div className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 shadow-xs transition-shadow hover:shadow-theme-xs dark:border-gray-800 dark:bg-white/[0.03]">
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
                 Perlu Verifikasi Ulang
               </span>
-              <div className="flex size-9 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
                 <AlertIcon className="size-5" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold tabular-nums text-amber-600 dark:text-amber-400">
+              <span className="text-2xl font-bold text-amber-600 tabular-nums dark:text-amber-400">
                 {metrics.flaggedRowsCount}
               </span>
               <span className="ms-1.5 text-xs text-gray-500 dark:text-gray-400">
@@ -115,18 +106,18 @@ export default function OperationalMetricsCards({ metrics }: Props) {
         </div>
 
         {/* KPI 4: Data Ditolak */}
-        <div className="group flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-theme-xs sm:p-6 dark:border-gray-800 dark:bg-white/3">
+        <div className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 shadow-xs transition-shadow hover:shadow-theme-xs dark:border-gray-800 dark:bg-white/[0.03]">
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
                 Data Ditolak (Gagal Impor)
               </span>
-              <div className="flex size-9 items-center justify-center rounded-lg bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400">
                 <OctagonAlertIcon className="size-5" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold tabular-nums text-red-600 dark:text-red-400">
+              <span className="text-2xl font-bold text-red-600 tabular-nums dark:text-red-400">
                 {metrics.rejectedRowsCount}
               </span>
               <span className="ms-1.5 text-xs text-gray-500 dark:text-gray-400">
