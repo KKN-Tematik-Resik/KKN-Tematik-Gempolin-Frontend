@@ -12,9 +12,9 @@ import type {
 // Dummy data ringkasan KPI sistem
 const dummySummaryStats: SyncSummaryStats = {
   statusSistem: "normal",
-  totalSumber: 3,
+  totalSumber: 2,
   sumberMutakhir: 2,
-  sumberPerluPembaruan: 1,
+  sumberPerluPembaruan: 0,
   totalImporBulanIni: 6,
 };
 
@@ -30,6 +30,7 @@ const dummySourceStatuses: SourceStatusItem[] = [
     waktuImpor: "18 Nov 2026, 08:30 WIB",
     status: "mutakhir",
     keterangan: "Data mingguan terbaru telah berhasil diimpor dan diverifikasi.",
+    href: "/admin/gempolin",
   },
   {
     id: "src-demografi",
@@ -41,17 +42,7 @@ const dummySourceStatuses: SourceStatusItem[] = [
     waktuImpor: "02 Nov 2026, 09:15 WIB",
     status: "mutakhir",
     keterangan: "Data demografi bulan berjalan valid dan aktif digunakan di dashboard.",
-  },
-  {
-    id: "src-bank-sampah",
-    namaSumber: "Informasi Bank Sampah",
-    kategori: "Agregasi Tonase Sampah Terpilah",
-    frekuensi: "Bulanan (Pertengahan Bulan)",
-    periodeLaporan: "Oktober 2026",
-    waktuSumber: "31 Okt 2026, 16:00 WIB",
-    waktuImpor: "01 Nov 2026, 14:00 WIB",
-    status: "perlu_pembaruan",
-    keterangan: "Data periode November belum diunggah. Toleransi pembaruan telah terlampaui.",
+    href: "/admin/demografi",
   },
 ];
 
