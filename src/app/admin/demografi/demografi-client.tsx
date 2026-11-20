@@ -10,11 +10,9 @@ import IndicatorCard from "@/components/shared/indicator-card";
 import MetricCard from "@/components/shared/metric-card";
 import { getSpatialParticipationList } from "@/data/mock/spatial-participation";
 import { useDashboardFilters } from "@/hooks/use-dashboard-filters";
-import { BoxIcon, CheckCircleIcon, UploadIcon, UserCircleIcon, UsersIcon } from "@/icons";
-import { Button } from "@/components/ui/button";
-import ImportDialog, {
-  type ImportPreviewData,
-} from "@/components/sinkronisasi/import-dialog";
+import { BoxIcon, UserCircleIcon, UsersIcon } from "@/icons";
+import ImportActionBar from "@/components/sinkronisasi/import-action-bar";
+import type { ImportPreviewData } from "@/components/sinkronisasi/import-dialog";
 import type { SourceStatusItem } from "@/types/sinkronisasi";
 import type {
   AktivitasType,
@@ -68,22 +66,6 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
   // State lokal untuk interaksi peta spasial
   const [activeClasses, setActiveClasses] = useState<number[]>([1, 2, 3, 4, 5]);
   const [selectedRt, setSelectedRt] = useState<SelectedRtInfo | null>(null);
-
-  // State modal impor data demografi & notifikasi kemutakhiran
-  const [isImportOpen, setIsImportOpen] = useState(false);
-  const [lastImportInfo, setLastImportInfo] = useState<{
-    fileName: string;
-    timestamp: string;
-  } | null>(null);
-
-  const handleImportSuccess = (fileName: string) => {
-    const now = new Date();
-    const timeStr = `${now.toLocaleTimeString("id-ID", {
-      hour: "2-digit",
-      minute: "2-digit",
-    })} WIB`;
-    setLastImportInfo({ fileName, timestamp: timeStr });
-  };
 
   // Pratinjau tabel impor (agregat RT/RW tanpa data pribadi warga)
   const demografiPreview = useMemo<ImportPreviewData>(() => {
@@ -216,53 +198,15 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
 
   return (
     <div className="space-y-6">
-      {/* Action Bar: Status Kemutakhiran & Tombol Impor Data Demografi */}
-      <div className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-xs sm:flex-row sm:items-center sm:justify-between dark:border-gray-800 dark:bg-white/[0.03]">
-        <div>
-          <div className="flex items-center gap-2">
-        
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-              Pembaruan Data Demografi
-            </span>
-          </div>
-          <p className="mt-0.5 text-xs text-gray-600 dark:text-gray-300">
-            {lastImportInfo
-              ? `Dimutakhirkan: ${lastImportInfo.timestamp} via ${lastImportInfo.fileName}`
-              : "Periode aktif: November 2026 · Siklus Pembaruan: Bulanan (WIB)"}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Button
-            type="button"
-            onClick={() => setIsImportOpen(true)}
-            className="inline-flex items-center gap-2 text-xs"
-          >
-            <UploadIcon className="size-4" />
-            <span>Impor Data Demografi</span>
-          </Button>
-        </div>
-      </div>
-
-      {/* Banner Feedback Berhasil Dimutakhirkan */}
-      {lastImportInfo && (
-        <div className="flex items-center justify-between gap-3 rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-xs text-emerald-800 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300">
-          <div className="flex items-center gap-2.5">
-            <CheckCircleIcon className="size-4.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-            <span>
-              Data demografi {demografiPreview.totalRows} RT berhasil dimutakhirkan dari berkas{" "}
-              <strong>{lastImportInfo.fileName}</strong> pada {lastImportInfo.timestamp}.
-            </span>
-          </div>
-          <button
-            type="button"
-            onClick={() => setLastImportInfo(null)}
-            className="font-medium text-emerald-700 underline hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-200"
-          >
-            Tutup
-          </button>
-        </div>
-      )}
+      <ImportActionBar
+        title="Pembaruan Data Demografi"
+        defaultSubtitle={`Periode aktif: ${initialData.label} · Siklus Pembaruan: Bulanan (WIB)`}
+        buttonLabel="Impor Data Demografi"
+        successEntityLabel="Data demografi"
+        rowUnit="RT"
+        source={DEMOGRAFI_SOURCE}
+        preview={demografiPreview}
+      />
 
       {/* 3 Kartu Ringkasan Demografi Tingkat Kelurahan */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
@@ -425,15 +369,6 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
           selectedRwFilter={selectedRw}
         />
       )}
-
-      {/* Modal Impor Data Demografi */}
-      <ImportDialog
-        isOpen={isImportOpen}
-        onOpenChange={setIsImportOpen}
-        source={DEMOGRAFI_SOURCE}
-        preview={demografiPreview}
-        onSuccess={handleImportSuccess}
-      />
     </div>
   );
 }
