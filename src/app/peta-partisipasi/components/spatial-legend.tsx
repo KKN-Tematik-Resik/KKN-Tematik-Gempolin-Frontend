@@ -88,7 +88,7 @@ export default function SpatialLegend({
           );
         })}
 
-        {/* Baris Status: Data Tidak Tersedia (BR-07) */}
+        {/* Baris Status: Data Tidak Tersedia */}
         <div className="flex items-center justify-between gap-2.5 rounded-lg border-t border-dashed border-gray-200 px-2 pt-2 text-gray-600 dark:border-gray-800 dark:text-gray-400">
           <div className="flex items-center gap-2">
             <span

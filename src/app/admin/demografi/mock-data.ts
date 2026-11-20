@@ -165,7 +165,7 @@ const rawRtData: Record<string, Omit<DemografiRtData, "id" | "kodeRw">[]> = {
       kk: { terdata: 100, memilah: 75, mengolah: 49 },
       warga: { terdata: 335, memilah: 252, mengolah: 165 },
     },
-    // RT 05: Kasus uji batas BR-07 (Data belum terdata / 0)
+    // RT 05: Wilayah dengan data belum terdata (0)
     {
       kodeRt: "RT 05",
       namaRt: "RT 05",
@@ -176,7 +176,7 @@ const rawRtData: Record<string, Omit<DemografiRtData, "id" | "kodeRw">[]> = {
   ],
 };
 
-// Bangun struktur DemografiRwData dengan agregasi murni (BR-06)
+// Bangun struktur DemografiRwData dengan agregasi murni
 export const mockDaftarRw: DemografiRwData[] = Object.entries(rawRtData).map(
   ([kodeRw, rtList]) => {
     const daftarRt: DemografiRtData[] = rtList.map((rt) => ({
@@ -197,7 +197,7 @@ export const mockDaftarRw: DemografiRwData[] = Object.entries(rawRtData).map(
   },
 );
 
-// Agregasi seluruh RW untuk tingkat Kelurahan Gempolsari (BR-06)
+// Agregasi seluruh RW untuk tingkat Kelurahan Gempolsari
 export const mockKelurahanSummary = {
   rumah: aggregateDemografiMetrics(mockDaftarRw.map((rw) => rw.rumah)),
   kk: aggregateDemografiMetrics(mockDaftarRw.map((rw) => rw.kk)),
