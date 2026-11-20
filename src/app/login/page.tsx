@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import LoginForm from "./login-form";
 
 export const metadata: Metadata = {
-  title: "Login Admin | Gempolin Kelurahan Gempolsari",
-  description: "Halaman masuk Admin Kelurahan Gempolsari",
+  title: "Akses Petugas | Gempolin Kelurahan Gempolsari",
+  description: "Portal masuk petugas Kelurahan Gempolsari",
 };
 
 export default function LoginPage() {
