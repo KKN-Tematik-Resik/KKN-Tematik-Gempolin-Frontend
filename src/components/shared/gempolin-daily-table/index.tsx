@@ -35,32 +35,44 @@ const ITEMS_PER_PAGE = 10;
 
 export default function GempolinDailyTable({ data }: GempolinDailyTableProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRw, setSelectedRw] = useState("all");
   const [selectedRt, setSelectedRt] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Daftar RT unik untuk opsi filter
-  const rtOptions = useMemo(() => {
-    const rts = Array.from(new Set(data.map((item) => item.rtNama))).sort();
-    return rts;
+  // Daftar RW unik untuk opsi filter
+  const rwOptions = useMemo(() => {
+    return Array.from(new Set(data.map((item) => item.rwNama))).sort();
   }, [data]);
+
+  // Daftar RT unik mengikuti RW yang dipilih
+  const rtOptions = useMemo(() => {
+    const scoped =
+      selectedRw === "all"
+        ? data
+        : data.filter((item) => item.rwNama === selectedRw);
+    return Array.from(new Set(scoped.map((item) => item.rtNama))).sort();
+  }, [data, selectedRw]);
 
   // Urutkan dan filter data
   const filteredData = useMemo(() => {
     return [...data]
       .sort((a, b) => b.tanggal.localeCompare(a.tanggal))
       .filter((row) => {
-        const matchesRt =
-          selectedRt === "all" || row.rtNama === selectedRt;
+        const matchesRw = selectedRw === "all" || row.rwNama === selectedRw;
+        const matchesRt = selectedRt === "all" || row.rtNama === selectedRt;
         const query = searchQuery.trim().toLowerCase();
+        const wilayahText = `${row.rwNama} / ${row.rtNama}`.toLowerCase();
         const matchesSearch =
           !query ||
           row.tanggal.toLowerCase().includes(query) ||
+          row.rwNama.toLowerCase().includes(query) ||
           row.rtNama.toLowerCase().includes(query) ||
+          wilayahText.includes(query) ||
           formatWibDate(row.tanggal).toLowerCase().includes(query);
 
-        return matchesRt && matchesSearch;
+        return matchesRw && matchesRt && matchesSearch;
       });
-  }, [data, selectedRt, searchQuery]);
+  }, [data, selectedRw, selectedRt, searchQuery]);
 
   // Reset page saat filter berubah
   const totalPages = Math.max(1, Math.ceil(filteredData.length / ITEMS_PER_PAGE));
@@ -89,7 +101,7 @@ export default function GempolinDailyTable({ data }: GempolinDailyTableProps) {
             </span>
             <input
               type="text"
-              placeholder="Cari tanggal atau RT..."
+              placeholder="Cari tanggal, RW, atau RT..."
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value);
@@ -99,8 +111,32 @@ export default function GempolinDailyTable({ data }: GempolinDailyTableProps) {
             />
           </div>
 
+          {/* Filter RW */}
+          <div className="relative w-full sm:w-40">
+            <span className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3 text-gray-400">
+              <FilterIcon className="size-4" />
+            </span>
+            <select
+              aria-label="Filter Wilayah RW"
+              value={selectedRw}
+              onChange={(e) => {
+                setSelectedRw(e.target.value);
+                setSelectedRt("all");
+                setCurrentPage(1);
+              }}
+              className="h-10 w-full appearance-none rounded-lg border border-gray-300 bg-white ps-9 pe-8 text-sm text-gray-900 focus:border-brand-500 focus:outline-hidden focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+            >
+              <option value="all">Semua RW</option>
+              {rwOptions.map((rw) => (
+                <option key={rw} value={rw}>
+                  {rw}
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* Filter RT */}
-          <div className="relative w-full sm:w-44">
+          <div className="relative w-full sm:w-40">
             <span className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3 text-gray-400">
               <FilterIcon className="size-4" />
             </span>
@@ -158,7 +194,7 @@ export default function GempolinDailyTable({ data }: GempolinDailyTableProps) {
                   isHeader
                   className="px-4 py-3 text-start text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400"
                 >
-                  Wilayah RT
+                  Wilayah (RW / RT)
                 </TableCell>
                 <TableCell
                   isHeader
@@ -191,7 +227,7 @@ export default function GempolinDailyTable({ data }: GempolinDailyTableProps) {
                           className="max-w-xs whitespace-normal text-start text-xs leading-relaxed"
                         >
                           Berat setelah verifikasi lapangan. Berbeda dengan Berat
-                          Terolah yang mencerminkan hasil olah aktual (BR-03).
+                          Terolah yang mencerminkan hasil olah aktual.
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
@@ -221,7 +257,7 @@ export default function GempolinDailyTable({ data }: GempolinDailyTableProps) {
                       </TableCell>
                       <TableCell className="px-4 py-3.5 text-start text-sm text-gray-700 dark:text-gray-300">
                         <Badge color="light" size="sm" variant="light">
-                          {row.rtNama}
+                          {row.rwNama} / {row.rtNama}
                         </Badge>
                       </TableCell>
                       <TableCell className="px-4 py-3.5 text-end text-sm text-gray-700 tabular-nums dark:text-gray-300">
@@ -263,7 +299,7 @@ export default function GempolinDailyTable({ data }: GempolinDailyTableProps) {
                         Tidak ada catatan ditemukan
                       </h4>
                       <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        Coba sesuaikan kata kunci pencarian atau filter RT Anda.
+                        Coba sesuaikan kata kunci pencarian atau filter RW/RT Anda.
                       </p>
                     </div>
                   </TableCell>

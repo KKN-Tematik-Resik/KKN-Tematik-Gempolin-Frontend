@@ -1,13 +1,17 @@
 export interface GempolinHarian {
   tanggal: string; // ISO date string "YYYY-MM-DD", zona WIB
   beratTerolah: number; // kg, berat yang benar-benar diolah
-  beratVerifikasi: number; // kg, berat setelah verifikasi (berbeda makna — BR-03)
-  rtId: string; // e.g. "RT-01"
+  beratVerifikasi: number; // kg, berat setelah verifikasi
+  rwId: string; // e.g. "RW-01"
+  rwNama: string; // e.g. "RW 01"
+  rtId: string; // e.g. "RW-01-RT-01"
   rtNama: string; // e.g. "RT 01"
   requestCount: number; // jumlah request pengolahan hari itu
 }
 
 export interface GempolinRtSummary {
+  rwId: string;
+  rwNama: string;
   rtId: string;
   rtNama: string;
   totalRequest: number;

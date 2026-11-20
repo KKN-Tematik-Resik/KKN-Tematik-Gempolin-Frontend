@@ -5,7 +5,10 @@ import GempolinDailyTable from "@/components/shared/gempolin-daily-table";
 import GempolinRtTable from "@/components/shared/gempolin-rt-table";
 import GempolinTrendChart from "@/components/shared/gempolin-trend-chart";
 import MetricCard from "@/components/shared/metric-card";
+import ImportActionBar from "@/components/sinkronisasi/import-action-bar";
+import type { ImportPreviewData } from "@/components/sinkronisasi/import-dialog";
 import { TaskIcon, TrashBinIcon } from "@/icons";
+import type { SourceStatusItem } from "@/types/sinkronisasi";
 import { calculateDelta } from "@/utils";
 import type { Metadata } from "next";
 import { gempolinMockData } from "./mock-data";
@@ -19,6 +22,37 @@ export const metadata: Metadata = {
 export default function GempolinPage() {
   const { periode, periodeSebelumnya, harian, perRt } = gempolinMockData;
 
+  const gempolinSource: SourceStatusItem = {
+    id: "gempolin",
+    namaSumber: "Rekap Pengolahan Gempolin",
+    kategori: "Operasional Timbangan KSM",
+    frekuensi: "Mingguan",
+    periodeLaporan: periode.label,
+    waktuSumber: "-",
+    waktuImpor: "-",
+    status: "perlu_pembaruan",
+    keterangan: "",
+  };
+
+  const gempolinPreview: ImportPreviewData = {
+    columns: [
+      { key: "tanggal", label: "Tanggal (WIB)", align: "start" },
+      { key: "wilayah", label: "Wilayah (RW/RT)", align: "start" },
+      { key: "requestCount", label: "Request", align: "end" },
+      { key: "beratTerolah", label: "Terolah (kg)", align: "end" },
+      { key: "beratVerifikasi", label: "Verifikasi (kg)", align: "end" },
+    ],
+    rows: harian.slice(0, 6).map((item) => ({
+      id: `${item.tanggal}-${item.rtId}`,
+      tanggal: item.tanggal,
+      wilayah: `${item.rwNama} / ${item.rtNama}`,
+      requestCount: item.requestCount,
+      beratTerolah: item.beratTerolah,
+      beratVerifikasi: item.beratVerifikasi,
+    })),
+    totalRows: harian.length,
+  };
+
   const requestTrend = calculateDelta(
     periode.totalRequest,
     periodeSebelumnya.totalRequest,
@@ -31,6 +65,16 @@ export default function GempolinPage() {
   return (
     <div className="space-y-6">
       <PageBreadcrumb pageTitle="Rekap Pengolahan Gempolin" />
+
+      <ImportActionBar
+        title="Pembaruan Data Rekap Gempolin"
+        defaultSubtitle={`Periode aktif: ${periode.label} · Siklus Pembaruan: Mingguan (WIB)`}
+        buttonLabel="Impor Rekap Gempolin"
+        successEntityLabel="Rekap pengolahan Gempolin"
+        rowUnit="catatan harian"
+        source={gempolinSource}
+        preview={gempolinPreview}
+      />
 
       {/* Baris 1: KPI Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
@@ -63,7 +107,7 @@ export default function GempolinPage() {
         />
       </div>
 
-      {/* Baris 2: Kartu Komparasi Antar-Periode (FR-27) */}
+      {/* Baris 2: Kartu Komparasi Antar-Periode */}
       <ComponentCard
         title="Perbandingan Antar-Periode"
         desc="Komparasi performa operasional pengolahan sampah dengan periode sebelumnya"
@@ -79,18 +123,18 @@ export default function GempolinPage() {
         />
       </ComponentCard>
 
-      {/* Baris 3: Tren Harian Berat Terolah (BR-04) */}
+      {/* Baris 3: Tren Harian Berat Terolah */}
       <ComponentCard
         title="Tren Harian Tonase Terolah"
-        desc="Distribusi harian berat sampah yang berhasil diolah dalam zona waktu WIB (BR-04)"
+        desc="Distribusi harian berat sampah yang berhasil diolah dalam zona waktu WIB"
       >
         <GempolinTrendChart data={harian} />
       </ComponentCard>
 
-      {/* Baris 4: Rekap per Wilayah RT (BR-03, BR-07) */}
+      {/* Baris 4: Rekap per Wilayah RW & RT */}
       <ComponentCard
-        title="Rekapitulasi per Wilayah RT"
-        desc="Rincian akumulasi permintaan dan tonase per RT dengan verifikasi lapangan (BR-03)"
+        title="Rekapitulasi per Wilayah (RW & RT)"
+        desc="Rincian akumulasi permintaan dan tonase per RW dan RT dengan verifikasi lapangan"
       >
         <GempolinRtTable data={perRt} />
       </ComponentCard>
