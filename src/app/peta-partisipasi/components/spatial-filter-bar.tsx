@@ -24,12 +24,12 @@ const INDICATOR_OPTIONS: Array<{
   key: ParticipationIndicatorKey;
   label: string;
 }> = [
-  { key: "rumah_memilah", label: "% Rumah Memilah" },
-  { key: "rumah_mengolah", label: "% Rumah Mengolah" },
-  { key: "kk_memilah", label: "% KK Memilah" },
-  { key: "kk_mengolah", label: "% KK Mengolah" },
-  { key: "warga_memilah", label: "% Warga Memilah" },
-  { key: "warga_mengolah", label: "% Warga Mengolah" },
+  { key: "rumah_memilah", label: "Rumah Memilah" },
+  { key: "rumah_mengolah", label: "Rumah Mengolah" },
+  { key: "kk_memilah", label: "KK Memilah" },
+  { key: "kk_mengolah", label: "KK Mengolah" },
+  { key: "warga_memilah", label: "Warga Memilah" },
+  { key: "warga_mengolah", label: "Warga Mengolah" },
 ];
 
 export default function SpatialFilterBar({

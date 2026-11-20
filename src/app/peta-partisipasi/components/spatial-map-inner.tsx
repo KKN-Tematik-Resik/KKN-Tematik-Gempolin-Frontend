@@ -196,11 +196,6 @@ export default function SpatialMapInner({
         "top-right",
       );
 
-      map.addControl(
-        new maplibre.AttributionControl({ compact: true }),
-        "bottom-right",
-      );
-
       map.on("load", () => {
         const fillColor = buildFillColorExpression(itemsRef.current, isDark);
         addMapLayers(map, isDark, fillColor);
