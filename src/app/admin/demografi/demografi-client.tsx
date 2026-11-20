@@ -10,7 +10,12 @@ import IndicatorCard from "@/components/shared/indicator-card";
 import MetricCard from "@/components/shared/metric-card";
 import { getSpatialParticipationList } from "@/data/mock/spatial-participation";
 import { useDashboardFilters } from "@/hooks/use-dashboard-filters";
-import { BoxIcon, UserCircleIcon, UsersIcon } from "@/icons";
+import { BoxIcon, CheckCircleIcon, UploadIcon, UserCircleIcon, UsersIcon } from "@/icons";
+import { Button } from "@/components/ui/button";
+import ImportDialog, {
+  type ImportPreviewData,
+} from "@/components/sinkronisasi/import-dialog";
+import type { SourceStatusItem } from "@/types/sinkronisasi";
 import type {
   AktivitasType,
   DemografiDataset,
@@ -28,6 +33,18 @@ const OBJEK_DISPLAY_NAMES: Record<ObjekType, string> = {
   rumah: "Rumah",
   kk: "Kepala Keluarga (KK)",
   warga: "Warga (Jiwa)",
+};
+
+const DEMOGRAFI_SOURCE: SourceStatusItem = {
+  id: "demografi",
+  namaSumber: "Data Demografi & 6 Indikator Partisipasi",
+  kategori: "Sensus Warga Kelurahan",
+  frekuensi: "Bulanan",
+  periodeLaporan: "November 2026",
+  waktuSumber: "-",
+  waktuImpor: "-",
+  status: "perlu_pembaruan",
+  keterangan: "",
 };
 
 export default function DemografiClient({ initialData }: DemografiClientProps) {
@@ -48,9 +65,52 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
   const activeAktivitas: AktivitasType =
     rawAktivitas === "mengolah" ? "mengolah" : "memilah";
 
-  // State lokal untuk interaksi peta spasial (FR-40 & FS-05)
+  // State lokal untuk interaksi peta spasial
   const [activeClasses, setActiveClasses] = useState<number[]>([1, 2, 3, 4, 5]);
   const [selectedRt, setSelectedRt] = useState<SelectedRtInfo | null>(null);
+
+  // State modal impor data demografi & notifikasi kemutakhiran
+  const [isImportOpen, setIsImportOpen] = useState(false);
+  const [lastImportInfo, setLastImportInfo] = useState<{
+    fileName: string;
+    timestamp: string;
+  } | null>(null);
+
+  const handleImportSuccess = (fileName: string) => {
+    const now = new Date();
+    const timeStr = `${now.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })} WIB`;
+    setLastImportInfo({ fileName, timestamp: timeStr });
+  };
+
+  // Pratinjau tabel impor (agregat RT/RW tanpa data pribadi warga)
+  const demografiPreview = useMemo<ImportPreviewData>(() => {
+    const allRows = initialData.daftarRw.flatMap((rw) =>
+      rw.daftarRt.map((rt) => ({
+        id: rt.id,
+        wilayah: `${rt.kodeRw} / ${rt.kodeRt}`,
+        rumahTerdata: rt.rumah.terdata,
+        rumahMemilah: rt.rumah.memilah,
+        rumahMengolah: rt.rumah.mengolah,
+        kkTerdata: rt.kk.terdata,
+        wargaTerdata: rt.warga.terdata,
+      })),
+    );
+    return {
+      columns: [
+        { key: "wilayah", label: "Wilayah (RW/RT)", align: "start" },
+        { key: "rumahTerdata", label: "Rumah Terdata", align: "end" },
+        { key: "rumahMemilah", label: "Memilah", align: "end" },
+        { key: "rumahMengolah", label: "Mengolah", align: "end" },
+        { key: "kkTerdata", label: "KK Terdata", align: "end" },
+        { key: "wargaTerdata", label: "Warga (Jiwa)", align: "end" },
+      ],
+      rows: allRows.slice(0, 6),
+      totalRows: allRows.length,
+    };
+  }, [initialData.daftarRw]);
 
   // Opsi dropdown RW
   const rwOptions = useMemo(() => {
@@ -72,7 +132,7 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
     );
   }, [initialData.daftarRw, selectedRw]);
 
-  // Agregasi capaian indikator aktif (BR-06)
+  // Agregasi capaian indikator aktif
   const activeMetrics = useMemo(() => {
     const list = filteredRwList.map((rw) => rw[activeObjek]);
     const summary = aggregateDemografiMetrics(list);
@@ -156,6 +216,54 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
 
   return (
     <div className="space-y-6">
+      {/* Action Bar: Status Kemutakhiran & Tombol Impor Data Demografi */}
+      <div className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-xs sm:flex-row sm:items-center sm:justify-between dark:border-gray-800 dark:bg-white/[0.03]">
+        <div>
+          <div className="flex items-center gap-2">
+        
+            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+              Pembaruan Data Demografi
+            </span>
+          </div>
+          <p className="mt-0.5 text-xs text-gray-600 dark:text-gray-300">
+            {lastImportInfo
+              ? `Dimutakhirkan: ${lastImportInfo.timestamp} via ${lastImportInfo.fileName}`
+              : "Periode aktif: November 2026 · Siklus Pembaruan: Bulanan (WIB)"}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            onClick={() => setIsImportOpen(true)}
+            className="inline-flex items-center gap-2 text-xs"
+          >
+            <UploadIcon className="size-4" />
+            <span>Impor Data Demografi</span>
+          </Button>
+        </div>
+      </div>
+
+      {/* Banner Feedback Berhasil Dimutakhirkan */}
+      {lastImportInfo && (
+        <div className="flex items-center justify-between gap-3 rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-xs text-emerald-800 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300">
+          <div className="flex items-center gap-2.5">
+            <CheckCircleIcon className="size-4.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            <span>
+              Data demografi {demografiPreview.totalRows} RT berhasil dimutakhirkan dari berkas{" "}
+              <strong>{lastImportInfo.fileName}</strong> pada {lastImportInfo.timestamp}.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setLastImportInfo(null)}
+            className="font-medium text-emerald-700 underline hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-200"
+          >
+            Tutup
+          </button>
+        </div>
+      )}
+
       {/* 3 Kartu Ringkasan Demografi Tingkat Kelurahan */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
         <MetricCard
@@ -181,7 +289,7 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
         />
       </div>
 
-      {/* Bar Filter: Toggle Objek + Dropdown RW + Toggle View Mode (FR-40) */}
+      {/* Bar Filter: Toggle Objek + Dropdown RW + Toggle View Mode */}
       <DemografiFilterBar
         activeObjek={activeObjek}
         selectedRw={selectedRw}
@@ -227,7 +335,7 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
         </div>
       </div>
 
-      {/* Konten Dinamis: Peta Interaktif (FR-40 / FS-05) ATAU Tabel Data Hierarkis */}
+      {/* Konten Dinamis: Peta Interaktif ATAU Tabel Data Hierarkis */}
       {activeView === "map" ? (
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs dark:border-gray-800 dark:bg-white/[0.03]">
           {/* Header Card Peta */}
@@ -295,17 +403,14 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
             </div>
           </div>
 
-          {/* Footer Card */}
+          Footer Card
           <div className="flex items-center justify-between border-t border-gray-100 px-5 py-3 text-xs text-gray-500 sm:px-6 dark:border-gray-800 dark:text-gray-400">
             <span className="tabular-nums">
               Menampilkan {filteredSpatialItems.length} poligon RT ({wilayahLabel})
             </span>
-            <span className="text-[11px] text-gray-400 dark:text-gray-500">
-              * Privasi terjamin (UU PDP): Peta menampilkan visualisasi agregat tingkat RT/RW tanpa nama warga (BR-01).
-            </span>
           </div>
 
-          {/* Drawer Detail RT Terpilih (Kepatuhan Privasi Warga BR-01) */}
+          {/* Drawer Detail RT Terpilih */}
           <SpatialDrawer
             rt={selectedRt?.rt ?? null}
             rw={selectedRt?.rw ?? null}
@@ -320,6 +425,15 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
           selectedRwFilter={selectedRw}
         />
       )}
+
+      {/* Modal Impor Data Demografi */}
+      <ImportDialog
+        isOpen={isImportOpen}
+        onOpenChange={setIsImportOpen}
+        source={DEMOGRAFI_SOURCE}
+        preview={demografiPreview}
+        onSuccess={handleImportSuccess}
+      />
     </div>
   );
 }
