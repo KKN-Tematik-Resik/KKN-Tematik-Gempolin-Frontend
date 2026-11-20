@@ -10,6 +10,7 @@ export interface SourceStatusItem {
   waktuImpor: string;
   status: SourceStatusType;
   keterangan: string;
+  href?: string;
 }
 
 export type AuditStatusType = "sukses" | "rollback";
