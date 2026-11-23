@@ -48,8 +48,8 @@ export interface PublicParticipationIndicators {
 
 export interface MonthlyTrendItem {
   periodeKey: string;
-  label: string; // contoh: "Jun", "Jul", "Agt", "Sep", "Okt", "Nov"
+  label: string; // contoh: "Des 2025", "Jan 2026", dst.
   gempolinProcessedKg: number;
   gempolinRequests: number;
-  bankSampahKg: number;
+  bankSampahKg?: number;
 }
