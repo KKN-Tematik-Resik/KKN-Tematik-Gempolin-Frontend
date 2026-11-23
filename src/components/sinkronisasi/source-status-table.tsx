@@ -1,12 +1,9 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Link } from "@/i18n/navigation";
-import { AlertIcon, CheckCircleIcon, UploadIcon } from "@/icons";
+import { AlertIcon, CheckCircleIcon } from "@/icons";
 import type { SourceStatusItem } from "@/types/sinkronisasi";
-import { cn } from "@/utils";
 
 interface SourceStatusTableProps {
   sources: SourceStatusItem[];
@@ -40,9 +37,6 @@ export default function SourceStatusTable({ sources }: SourceStatusTableProps) {
               </th>
               <th scope="col" className="px-4 py-3.5 text-start">
                 Status Data
-              </th>
-              <th scope="col" className="px-4 py-3.5 text-end">
-                Tindakan
               </th>
             </tr>
           </thead>
@@ -90,23 +84,6 @@ export default function SourceStatusTable({ sources }: SourceStatusTableProps) {
                       <span>Perlu Diperbarui</span>
                     </Badge>
                   )}
-                </td>
-
-                {/* Tindakan */}
-                <td className="px-4 py-4 text-end">
-                  <Link
-                    href={item.href ?? "/admin"}
-                    className={cn(
-                      buttonVariants({
-                        variant: item.status === "perlu_pembaruan" ? "default" : "outline",
-                        size: "xs",
-                      }),
-                      "gap-1.5"
-                    )}
-                  >
-                    <UploadIcon className="size-3.5" />
-                    <span>Perbarui</span>
-                  </Link>
                 </td>
               </tr>
             ))}
