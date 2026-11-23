@@ -192,7 +192,7 @@ export default function PublicDashboardClientWrapper({
       {/* 4. Visual Utama 1: Donut Chart Partisipasi [Rumah | KK | Warga] + Rincian 6 Indikator */}
       <ParticipationDonutChart indicators={indicators} />
 
-      {/* 5. Visual Utama 2: Horizontal Bar Chart Sebaran kg per RT */}
+      {/* 5. Visual Utama 2: Vertikal Bar Chart Sebaran kg per Wilayah */}
       <RtWasteBarChart rtItems={filteredRtData} scopeLabel={scopeLabel} />
 
       {/* 6. Rekapitulasi Operasional Layanan (Gempolin) */}
@@ -200,6 +200,10 @@ export default function PublicDashboardClientWrapper({
         totalRequests={totalRequests}
         totalProcessedKg={totalGempolinKg}
         monthlyTrends={monthlyTrends}
+        allRtData={initialRtData}
+        availableRws={availableRws}
+        initialRw={filter.rw}
+        initialRt={filter.rt}
       />
     </div>
   );
