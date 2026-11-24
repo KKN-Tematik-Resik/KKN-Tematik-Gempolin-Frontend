@@ -64,10 +64,8 @@ export default function DemografiHierarchyTable({
     );
   }, [dataRw, selectedRwFilter]);
 
-  // State untuk menyimpan daftar kodeRw yang sedang di-expand (default: semua terbuka)
-  const [expandedRws, setExpandedRws] = useState<Set<string>>(() => {
-    return new Set(dataRw.map((rw) => rw.kodeRw));
-  });
+  // State untuk menyimpan daftar kodeRw yang sedang di-expand (default: tertutup/collapsed agar hemat ruang)
+  const [expandedRws, setExpandedRws] = useState<Set<string>>(() => new Set());
 
   const toggleExpand = (kodeRw: string) => {
     setExpandedRws((prev) => {

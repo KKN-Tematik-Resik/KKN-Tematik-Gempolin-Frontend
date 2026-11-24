@@ -347,13 +347,6 @@ export default function DemografiClient({ initialData }: DemografiClientProps) {
             </div>
           </div>
 
-          Footer Card
-          <div className="flex items-center justify-between border-t border-gray-100 px-5 py-3 text-xs text-gray-500 sm:px-6 dark:border-gray-800 dark:text-gray-400">
-            <span className="tabular-nums">
-              Menampilkan {filteredSpatialItems.length} poligon RT ({wilayahLabel})
-            </span>
-          </div>
-
           {/* Drawer Detail RT Terpilih */}
           <SpatialDrawer
             rt={selectedRt?.rt ?? null}
