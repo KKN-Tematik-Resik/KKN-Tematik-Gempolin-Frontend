@@ -66,6 +66,9 @@ export default function ParticipationDonutChart({
   })();
 
   const createChartConfig = (
+    chartTitle: string,
+    fulfilledLabel: string,
+    unfulfilledLabel: string,
     numerator: number,
     denominator: number,
     percentage: number | null,
@@ -73,6 +76,11 @@ export default function ParticipationDonutChart({
   ) => {
     const unfulfilled = Math.max(0, denominator - numerator);
     const series = denominator > 0 ? [numerator, unfulfilled] : [0, 1];
+    const fulfilledPct = percentage !== null ? percentage.toFixed(1) : "0";
+    const unfulfilledPct =
+      denominator > 0
+        ? (((denominator - numerator) / denominator) * 100).toFixed(1)
+        : "0";
 
     const options: ApexOptions = {
       chart: {
@@ -82,7 +90,7 @@ export default function ParticipationDonutChart({
         sparkline: { enabled: true },
       },
       colors: [baseColor, isDark ? "#334155" : "#E2E8F0"],
-      labels: ["Aktif", "Belum"],
+      labels: [fulfilledLabel, unfulfilledLabel],
       stroke: {
         show: true,
         colors: [isDark ? "#111827" : "#FFFFFF"],
@@ -90,8 +98,33 @@ export default function ParticipationDonutChart({
       },
       tooltip: {
         theme: isDark ? "dark" : "light",
-        y: {
-          formatter: (val: number) => `${val.toLocaleString("id-ID")} ${activeData.unit}`,
+        custom: function ({ seriesIndex }: { seriesIndex: number }) {
+          const isFulfilled = seriesIndex === 0;
+          const color = isFulfilled
+            ? baseColor
+            : isDark
+            ? "#64748B"
+            : "#94A3B8";
+          const label = isFulfilled ? fulfilledLabel : unfulfilledLabel;
+          const val = isFulfilled ? numerator : unfulfilled;
+          const pct = isFulfilled ? fulfilledPct : unfulfilledPct;
+
+          const titleColor = isDark ? "#cbd5e1" : "#334155";
+          const labelColor = isDark ? "#94a3b8" : "#475569";
+          const valColor = isDark ? "#f8fafc" : "#0f172a";
+
+          return `
+            <div style="padding: 8px 12px 10px 12px; font-family: Outfit, sans-serif;">
+              <div style="font-size: 11px; font-weight: 600; color: ${titleColor}; line-height: 1.3;">
+                ${chartTitle}
+              </div>
+              <div style="margin-top: 5px; display: flex; align-items: center; gap: 7px; font-size: 12px; line-height: 1.3; white-space: nowrap;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background-color: ${color}; flex-shrink: 0; display: inline-block;"></span>
+                <span style="color: ${labelColor};">${label}:</span>
+                <span style="font-weight: 600; color: ${valColor};">${val.toLocaleString("id-ID")} ${activeData.unit} (${pct}%)</span>
+              </div>
+            </div>
+          `;
         },
       },
       plotOptions: {
@@ -120,6 +153,9 @@ export default function ParticipationDonutChart({
   };
 
   const memilahConfig = createChartConfig(
+    "Aktivitas Memilah",
+    "Sudah Memilah",
+    "Belum Memilah",
     activeData.memilahNum,
     activeData.memilahDen,
     activeData.memilahPct,
@@ -127,6 +163,9 @@ export default function ParticipationDonutChart({
   );
 
   const mengolahConfig = createChartConfig(
+    "Aktivitas Mengolah",
+    "Sudah Mengolah",
+    "Belum Mengolah",
     activeData.mengolahNum,
     activeData.mengolahDen,
     activeData.mengolahPct,

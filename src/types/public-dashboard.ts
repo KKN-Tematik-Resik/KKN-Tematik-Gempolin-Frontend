@@ -29,6 +29,16 @@ export interface PublicRtItem {
   gempolinRequests: number | null;
   gempolinProcessedKg: number | null;
   bankSampahKg: number | null;
+  sampahOrganikKg?: number | null;
+  sampahAnorganikKg?: number | null;
+}
+
+export interface WasteTypeComposition {
+  organikKg: number;
+  anorganikKg: number;
+  totalKg: number;
+  organikPercentage: number | null;
+  anorganikPercentage: number | null;
 }
 
 export interface AggregatedIndicator {

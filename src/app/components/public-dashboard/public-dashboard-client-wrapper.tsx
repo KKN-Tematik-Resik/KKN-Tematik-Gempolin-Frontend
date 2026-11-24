@@ -13,6 +13,7 @@ import ParticipationDonutChart from "./participation-donut-chart";
 import PublicFilterPanel from "./public-filter-panel";
 import PublicHeroHeader from "./public-hero-header";
 import RtWasteBarChart from "./rt-waste-bar-chart";
+import WasteCompositionDonutChart from "./waste-composition-donut-chart";
 
 interface PublicDashboardClientWrapperProps {
   initialRtData: PublicRtItem[];
@@ -165,6 +166,20 @@ export default function PublicDashboardClientWrapper({
     );
   }, [filteredRtData]);
 
+  // 8. Agregasi Sebaran Jenis Sampah (Organik vs Anorganik) pada cakupan wilayah aktif
+  const { totalOrganikKg, totalAnorganikKg } = useMemo(() => {
+    let organik = 0;
+    let anorganik = 0;
+    for (const item of filteredRtData) {
+      const total = item.gempolinProcessedKg ?? 0;
+      const org = item.sampahOrganikKg ?? Math.round(total * 0.62);
+      const anorg = item.sampahAnorganikKg ?? Math.max(0, total - org);
+      organik += org;
+      anorganik += anorg;
+    }
+    return { totalOrganikKg: organik, totalAnorganikKg: anorganik };
+  }, [filteredRtData]);
+
   return (
     <div className="space-y-6">
       {/* 1. Header Informasi & Link Peta Spasial */}
@@ -180,7 +195,7 @@ export default function PublicDashboardClientWrapper({
         availableRws={availableRws}
         availableRts={availableRts}
       />
-
+      
       {/* 3. Ringkasan Angka Kunci (4 Metrik Utama) */}
       <DemographicCards
         totalRumah={totalRumah}
@@ -189,13 +204,23 @@ export default function PublicDashboardClientWrapper({
         totalProcessedKg={totalGempolinKg}
       />
 
+       {/* 5. Visual Utama 2: Donut Chart Komposisi Pengolahan Sampah (Organik vs Anorganik) */}
+      <WasteCompositionDonutChart
+        organikKg={totalOrganikKg}
+        anorganikKg={totalAnorganikKg}
+        totalProcessedKg={totalGempolinKg}
+        scopeLabel={scopeLabel}
+      />
+
       {/* 4. Visual Utama 1: Donut Chart Partisipasi [Rumah | KK | Warga] + Rincian 6 Indikator */}
       <ParticipationDonutChart indicators={indicators} />
 
-      {/* 5. Visual Utama 2: Vertikal Bar Chart Sebaran kg per Wilayah */}
+     
+
+      {/* 6. Visual Utama 3: Vertikal Bar Chart Sebaran kg per Wilayah */}
       <RtWasteBarChart rtItems={filteredRtData} scopeLabel={scopeLabel} />
 
-      {/* 6. Rekapitulasi Operasional Layanan (Gempolin) */}
+      {/* 7. Rekapitulasi Operasional Layanan (Gempolin) */}
       <OperationalSummaryCard
         totalRequests={totalRequests}
         totalProcessedKg={totalGempolinKg}

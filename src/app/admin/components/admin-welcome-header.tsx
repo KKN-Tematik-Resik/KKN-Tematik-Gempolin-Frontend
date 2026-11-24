@@ -1,7 +1,7 @@
 import PageBreadcrumb from "@/components/common/page-breadcrumb";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { ClockIcon, TruckDeliveryIcon, UsersIcon } from "@/icons";
+import { TruckDeliveryIcon, UsersIcon } from "@/icons";
 import { cn } from "@/utils";
 
 interface AdminWelcomeHeaderProps {
