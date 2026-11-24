@@ -26,9 +26,19 @@ export interface GempolinPeriodeSummary {
   totalTerolah: number; // kg
 }
 
+export interface GempolinBulananSummary {
+  periode: string; // "2026-11" (YYYY-MM)
+  label: string; // "November 2026"
+  singkatan: string; // "Nov 26"
+  totalRequest: number;
+  totalTerolah: number; // kg
+  totalVerifikasi: number; // kg
+}
+
 export interface GempolinMockData {
   periode: GempolinPeriodeSummary;
   periodeSebelumnya: GempolinPeriodeSummary;
+  riwayatBulanan: GempolinBulananSummary[];
   harian: GempolinHarian[];
   perRt: GempolinRtSummary[];
 }
