@@ -8,49 +8,79 @@ export const publicDashboardMeta = {
   kotaName: "Kota Bandung",
 };
 
-// Tren 6 Bulan Terakhir untuk Gempolin & Bank Sampah (FR-27)
+// Tren Deret Waktu Operasional Layanan Gempolin (12 Bulan Terakhir)
 export const mockMonthlyTrends: MonthlyTrendItem[] = [
+  {
+    periodeKey: "2025-12",
+    label: "Des 2025",
+    gempolinProcessedKg: 8750,
+    gempolinRequests: 890,
+  },
+  {
+    periodeKey: "2026-01",
+    label: "Jan 2026",
+    gempolinProcessedKg: 9120,
+    gempolinRequests: 935,
+  },
+  {
+    periodeKey: "2026-02",
+    label: "Feb 2026",
+    gempolinProcessedKg: 9480,
+    gempolinRequests: 970,
+  },
+  {
+    periodeKey: "2026-03",
+    label: "Mar 2026",
+    gempolinProcessedKg: 9950,
+    gempolinRequests: 1015,
+  },
+  {
+    periodeKey: "2026-04",
+    label: "Apr 2026",
+    gempolinProcessedKg: 10400,
+    gempolinRequests: 1060,
+  },
+  {
+    periodeKey: "2026-05",
+    label: "Mei 2026",
+    gempolinProcessedKg: 10850,
+    gempolinRequests: 1095,
+  },
   {
     periodeKey: "2026-06",
     label: "Jun 2026",
     gempolinProcessedKg: 11200,
     gempolinRequests: 1120,
-    bankSampahKg: 2840,
   },
   {
     periodeKey: "2026-07",
     label: "Jul 2026",
     gempolinProcessedKg: 12450,
     gempolinRequests: 1210,
-    bankSampahKg: 3120,
   },
   {
     periodeKey: "2026-08",
     label: "Agt 2026",
     gempolinProcessedKg: 13100,
     gempolinRequests: 1290,
-    bankSampahKg: 3450,
   },
   {
     periodeKey: "2026-09",
     label: "Sep 2026",
     gempolinProcessedKg: 14200,
     gempolinRequests: 1380,
-    bankSampahKg: 3820,
   },
   {
     periodeKey: "2026-10",
     label: "Okt 2026",
     gempolinProcessedKg: 14850,
     gempolinRequests: 1425,
-    bankSampahKg: 4050,
   },
   {
     periodeKey: "2026-11",
     label: "Nov 2026",
     gempolinProcessedKg: 15340,
     gempolinRequests: 1482,
-    bankSampahKg: 4210,
   },
 ];
 

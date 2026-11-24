@@ -29,6 +29,16 @@ export interface PublicRtItem {
   gempolinRequests: number | null;
   gempolinProcessedKg: number | null;
   bankSampahKg: number | null;
+  sampahOrganikKg?: number | null;
+  sampahAnorganikKg?: number | null;
+}
+
+export interface WasteTypeComposition {
+  organikKg: number;
+  anorganikKg: number;
+  totalKg: number;
+  organikPercentage: number | null;
+  anorganikPercentage: number | null;
 }
 
 export interface AggregatedIndicator {
@@ -48,8 +58,8 @@ export interface PublicParticipationIndicators {
 
 export interface MonthlyTrendItem {
   periodeKey: string;
-  label: string; // contoh: "Jun", "Jul", "Agt", "Sep", "Okt", "Nov"
+  label: string; // contoh: "Des 2025", "Jan 2026", dst.
   gempolinProcessedKg: number;
   gempolinRequests: number;
-  bankSampahKg: number;
+  bankSampahKg?: number;
 }
